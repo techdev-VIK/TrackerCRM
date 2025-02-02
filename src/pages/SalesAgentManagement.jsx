@@ -12,7 +12,7 @@ const SalesAgentManagement = () => {
     <div className="sales-agent-management">
       <div className="sidebar">
         <h5>Sales Agent Management</h5>
-        <Link to="/dashboard" className="btn-back">
+        <Link to="/" className="btn-back">
           Back to Dashboard
         </Link>
       </div>
@@ -28,7 +28,7 @@ const SalesAgentManagement = () => {
                 </li>
               ))}
             </ul>
-            <Link to="/add-agent">
+            <Link to="/">
               <button className="btn-add">Add New Agent</button>
             </Link>
           </div>

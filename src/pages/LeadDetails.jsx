@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./App.css"; // Optional for extra styling
+
+
 
 const LeadDetails = () => {
   const [comments, setComments] = useState([

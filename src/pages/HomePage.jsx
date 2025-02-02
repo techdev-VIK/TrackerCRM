@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 const HomePage = () => {
@@ -6,23 +7,22 @@ const HomePage = () => {
     <div className="container-fluid">
       <div className="row vh-100">
         {/* Sidebar */}
-        <nav className="col-md-3 d-md-block bg-dark sidebar text-white p-3">
-          <h4 className="text-center">Tracker CRM</h4>
+        <nav className="col-md-3 d-md-block bg-secondary sidebar text-white p-3">
           <ul className="nav flex-column mt-3">
             <li className="nav-item">
-              <a href="#" className="nav-link text-white">Leads</a>
+              <Link to="/lead" className="nav-link active text-white">Leads</Link>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link text-white">Sales</a>
+              <Link to="/sales" className="nav-link text-white">Sales</Link>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link text-white">Agents</a>
+              <Link to="#" className="nav-link text-white">Agents</Link>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link text-white">Reports</a>
+              <Link to="/report" className="nav-link text-white">Reports</Link>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link text-white">Settings</a>
+              <Link to="#" className="nav-link text-white">Settings</Link>
             </li>
           </ul>
         </nav>

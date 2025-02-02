@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ReportPage = () => {
   return (
@@ -8,13 +9,13 @@ const ReportPage = () => {
         <div className="col-md-2 bg-light p-3">
           <h4>Sidebar</h4>
           <ul className="list-unstyled">
-            <li><a href="#">Back to Dashboard</a></li>
+            <li><Link to="/">Back to Dashboard</Link></li>
           </ul>
         </div>
 
         {/* Report Overview */}
         <div className="col-md-10 p-3">
-          <h2>Anvaya CRM Reports</h2>
+          <h2>TrackerCRM Reports</h2>
           <div className="mt-4">
             {/* Total Leads Closed and In Pipeline */}
             <div className="card mb-4">
@@ -32,6 +33,7 @@ const ReportPage = () => {
                 {/* Insert Bar Chart component here */}
                 <div style={{ height: '200px', backgroundColor: '#f4f4f4' }}>[Bar Chart]</div>
               </div>
+
             </div>
 
             {/* Lead Status Distribution */}
