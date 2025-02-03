@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import LeadDetails from "./pages/LeadDetails";
 import ReportPage from "./pages/ReportPage";
 import SalesAgentManagement from "./pages/SalesAgentManagement";
+import AddLead from './pages/AddLead';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/lead" element={<LeadDetails />}/>
-          <Route path="/report" element={<ReportPage />} />
+          <Route path="/lead/addLead" element={<AddLead />}/>
+          <Route path="/reports" element={<ReportPage />} />
           <Route path="/sales" element={<SalesAgentManagement />}/>
         </Routes>
         <Footer />

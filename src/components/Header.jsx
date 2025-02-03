@@ -3,27 +3,31 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="bg-dark text-white p-3">
-      <div className="container-fluid">
-        <div className="d-flex justify-content-between align-items-center">
-          <h1 className="h4">TrackerCRM</h1>
-          <nav>
-            <ul className="list-unstyled d-flex mb-0">
-              <li className="ms-3">
-                <NavLink to="/" className="text-white text-decoration-none">Home</NavLink>
-              </li>
-              <li className="ms-3">
-                <NavLink to="/report" className="text-white text-decoration-none">Reports</NavLink>
-              </li>
-              <li className="ms-3">
-                <NavLink to="/" className="text-white text-decoration-none">Settings</NavLink>
-              </li>
+    <nav className="navbar navbar-expand-lg bg-body-tertiary p-3" style={{position: "fixed", width: "100%", zIndex: 1000}}>
+  <div className="container-fluid">
+    <NavLink className=" work-sans-normal me-5" to="/">Tracker</NavLink>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item ms-3">
+          <NavLink className="nav-link active" aria-current="page" to="/leads">Leads</NavLink>
+        </li>
 
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+        <li className="nav-item ms-3">
+          <NavLink className="nav-link" to="/reports">Reports</NavLink>
+        </li>
+
+        <li className="nav-item ms-3">
+          <NavLink className="nav-link" to="/sales">Sales</NavLink>
+        </li>
+        
+      </ul>
+      <button className="btn btn-primary">Get started free</button>
+    </div>
+  </div>
+</nav>
   );
 };
 

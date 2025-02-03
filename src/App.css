@@ -1,5 +1,31 @@
 #root {
-  max-width: none;
+  --theme-color: #0D6EFF;
+  display: flex;
+  flex-direction: column; /* Stack header, content, and footer vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+
+body, html {
+  height: 100%; /* Ensure the body and HTML take full height */
+  margin: 0;    /* Remove default margins */
+  
+}
+
+
+.work-sans-normal{
+  font-family: "Work Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--theme-color);
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+.main-content {
+  flex: 1; /* Push footer to the bottom by taking available space */
+  padding-top: 70px;
 }
 
 .logo {
