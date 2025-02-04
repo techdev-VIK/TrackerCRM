@@ -1,64 +1,131 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+
 import Sidebar from "../components/Sidebar";
+import TrackerContext from "../contexts/TrackerContext";
 
 const Dashboard = () => {
+  const { sampleLeads:leads } = useContext(TrackerContext);
+
+  // Count leads by status
+  const leadStatusCounts = leads.reduce((acc, lead) => {
+    acc[lead.status] = (acc[lead.status] || 0) + 1;
+    return acc;
+  }, {});
+
+  // High priority leads
+  const highPriorityLeads = leads.filter((lead) => lead.priority === "High");
+
   return (
     <>
-      
       <div className="d-flex">
-   
-      <Sidebar />
+        <Sidebar />
 
+        <div className="py-5 mx-3 flex-grow-1">
+          <h2>Tracker Dashboard</h2>
+          <hr />
 
-      <div className="main-content">
-      <main className="container">
-        <div className="row">
-          <div className="col-md-3">
-            <div className="card">
-              <div className="card-body">
-                <h4>$40,000</h4>
-                <small>
-                  <span className="text-success">+15.69%</span> from last month
-                </small>
+          {/* First 3 Cards (Pipeline Status, Existing Layout) */}
+          <main className="">
+            <div className="row">
+              <div className="col-md-4 col-sm-6">
+                <div className="card p-1">
+                  <div className="card-title">
+                    <div className="d-flex justify-content-between">
+                      <h4>Monthly Residuals</h4>
+                      <div>$</div>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    <h5>$40,000</h5>
+                    <small>
+                      <span className="text-success">+15.69%</span> from last month
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6">
+                <div className="card p-1">
+                  <div className="card-title">
+                    <div className="d-flex justify-content-between">
+                      <h4>Annual Residuals</h4>
+                      <span className="bi bi-people me-2"></span>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    <h5>$440,000</h5>
+                    <small>Projected for this year</small>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4 col-sm-6">
+                <div className="card p-1">
+                  <div className="card-title">
+                    <div className="d-flex justify-content-between">
+                      <h4>Pipeline Status</h4>
+                      <span className="bi bi-graph-up-arrow me-2"></span>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    <h5>$40,000</h5>
+                    <small>Active leads · 12 new this month</small>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-md-3">
-            <div className="card">
-              <div className="card-body">
-                <h4>$30,000</h4>
-                <small>
-                  <span className="text-danger">+15.69%</span> from last month
-                </small>
+            {/* Lead Status Overview */}
+            <div className="mt-4">
+              <h4>Lead Status Overview</h4>
+              <div className="row">
+                {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
+                  <div key={status} className="col-md-2 col-sm-4">
+                    <div className="card text-center p-2">
+                      <h6>{status}</h6>
+                      <p className="lead">{leadStatusCounts[status] || 0}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
 
-          <div className="col-md-3">
-            <div className="card">
-              <div className="card-body">
-                <h4>$70,580</h4>
-                <small>
-                  <span className="text-success">+14.69%</span> from last month
-                </small>
+            {/* Quick Filters */}
+            <div className="mt-4">
+              <h4>Quick Filters</h4>
+              <div className="d-flex gap-2 flex-wrap">
+                {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
+                  <button key={status} className="btn btn-outline-primary">
+                    {status}
+                  </button>
+                ))}
               </div>
             </div>
-          </div>
 
-          <div className="col-md-3">
-            <div className="card">
-              <div className="card-body">
-                <h4>$120,000</h4>
-                <small>
-                  <span className="text-success">+45.69%</span> from last month
-                </small>
-              </div>
+            {/* High Priority Leads */}
+            <div className="mt-4">
+              <h4>Top Priority Leads</h4>
+              <ul className="list-group">
+                {highPriorityLeads.length > 0 ? (
+                  highPriorityLeads.map((lead) => (
+                    <li key={lead.id} className="list-group-item d-flex justify-content-between">
+                      <span>{lead.name} ({lead.source})</span>
+                      <span className="badge bg-danger">High</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="list-group-item text-muted">No high-priority leads</li>
+                )}
+              </ul>
             </div>
-          </div>
+
+            {/* Action Buttons */}
+            <div className="mt-4 d-flex gap-3">
+              <button className="btn btn-primary">Add New Lead</button>
+              <button className="btn btn-secondary">View Reports</button>
+            </div>
+          </main>
         </div>
-      </main>
-      </div>
       </div>
     </>
   );

@@ -11,11 +11,13 @@ import ReportPage from "./pages/ReportPage";
 import SalesAgentManagement from "./pages/SalesAgentManagement";
 import AddLead from './pages/AddLead';
 import Dashboard from './pages/Dashboard';
+import TrackerContext, { sampleLeads } from './contexts/TrackerContext';
 
 function App() {
 
   return (
     <>
+    <TrackerContext.Provider value={{sampleLeads}}>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -27,6 +29,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
+      </TrackerContext.Provider>
     </>
   )
 }
