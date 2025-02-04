@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 
 
 const HomePage = () => {
@@ -5,15 +6,16 @@ const HomePage = () => {
   return(
     
     <>
+    <Header />
     <main className="main-content">
-      <section className="my-5 container text-center">
-      <h2 className="display-3 fw-bold p-5">Track every move, drive every sale. Simplify your workflow with <span className="text-primary">Tracker CRM</span></h2>
-      <p className="mx-4 text-center fs-5 fw-light">From lead management to customer relationships, stay ahead with real-time insights and seamless automation. Your business, always on track.</p>
+      <section className="my-3 container text-center">
+      <h2 className="display-3 fw-bold py-5">Track every move, drive every sale. Simplify your workflow with <span className="text-primary">Tracker CRM</span></h2>
+      <p className="mx-3 text-center fs-5 fw-light">From lead management to customer relationships, stay ahead with real-time insights and seamless automation. Your business, always on track.</p>
 
       <button className="btn btn-primary mt-5">Get started free</button>
       </section>
       
-      <section className="my-5 container text-center">
+      <section className="m-5 text-center">
       <img src="tracker1.avif" className="img-fluid rounded my-5"/>
       </section>
 
@@ -27,7 +29,7 @@ const HomePage = () => {
        
         <div className="row my-5 py-3">
           <div className="col-md-5">
-            <div className="card mb-3 p-0 card-info" >
+            <div className="card mb-3 card-info" >
               <div className="card-body">
                 <div className="card-title">
                   <h5>Onboarding</h5>
@@ -40,7 +42,7 @@ const HomePage = () => {
             </div>
 
 
-            <div className="card mb-3 p-0 card-info" >
+            <div className="card mb-3 card-info" >
               <div className="card-body">
                 <div className="card-title">
                   <h5>Underwriting</h5>
@@ -53,7 +55,7 @@ const HomePage = () => {
             </div>
 
 
-            <div className="card p-0 card-info" >
+            <div className="card card-info" >
               <div className="card-body">
                 <div className="card-title">
                   <h5>Reporting</h5>

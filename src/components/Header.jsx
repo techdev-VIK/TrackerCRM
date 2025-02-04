@@ -13,7 +13,7 @@ const Header = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
       <li className="nav-item ms-3">
-          <NavLink className="nav-link" aria-current="page" to="/">Features</NavLink>
+          <NavLink className="nav-link" aria-current="page" to="/dashboard">Dashboard</NavLink>
         </li>
 
         <li className="nav-item ms-3">

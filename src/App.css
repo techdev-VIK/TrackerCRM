@@ -41,6 +41,33 @@ body, html {
   transform: scale(103%);
 }
 
+.list-unordered{
+  list-style: none;
+  padding-left: 0;
+}
+
+
+.sidebar{
+  width: 200px;
+  height: 100vh;
+  transition: width 0.3s;
+}
+
+.sidebar.collapsed{
+  width: 50px;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 50px; /* Ensures sidebar starts collapsed on small screens */
+  }
+
+  .sidebar .visible-text{
+    display: none;
+  }
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
