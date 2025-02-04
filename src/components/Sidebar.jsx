@@ -11,12 +11,12 @@ const Sidebar = () => {
 
         <>
         <div className={`sidebar bg-light ${isOpen ? "open" : "collapsed"}`}>
-        <div className= {`${isOpen} ? "d-flex justify-content-end" : "d-flex justify-content-start"`}>
+        <span className= "d-flex justify-content-start ms-1">
         <button className="btn btn-outline-primary mt-2" onClick={() => setIsOpen(!isOpen)}>
-        <div className={`${isOpen ? "bi-arrow-bar-left" : "bi-arrow-bar-right"}`}>
-        </div>
+        <span className={`${isOpen ? "bi-arrow-bar-left" : "bi-arrow-bar-right"}`}>
+        </span>
         </button>
-        </div>
+        </span>
         
 
         <SidebarMenu isOpen={isOpen} />
