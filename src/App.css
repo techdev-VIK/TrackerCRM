@@ -59,7 +59,7 @@ body, html {
 
 @media (max-width: 767px) {
   .sidebar {
-    width: 50px; /* Ensures sidebar starts collapsed on small screens */
+    width: 60px; /* Ensures sidebar starts collapsed on small screens */
   }
 
   .sidebar .visible-text{
