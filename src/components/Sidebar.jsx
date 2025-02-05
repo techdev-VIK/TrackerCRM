@@ -10,13 +10,16 @@ const Sidebar = () => {
   return (
 
         <>
-        <div className={`sidebar bg-light ${isOpen ? "open" : "collapsed"}`}>
-        <span className= "d-flex justify-content-start ms-1">
-        <button className="btn btn-outline-primary mt-2" onClick={() => setIsOpen(!isOpen)}>
+        <div className={`sidebar mt-2 bg-light ${isOpen ? "open" : "collapsed"}`}>
+        <div className= "d-flex justify-content-around">
+        
+        <NavLink className="work-sans-normal" to="/"><span className={isOpen ? "visible-text" : "d-none"}>Tracker</span></NavLink>
+
+        <button className="btn btn-outline-primary" onClick={() => setIsOpen(!isOpen)}>
         <span className={`${isOpen ? "bi-arrow-bar-left" : "bi-arrow-bar-right"}`}>
         </span>
         </button>
-        </span>
+        </div>
         
 
         <SidebarMenu isOpen={isOpen} />

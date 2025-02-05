@@ -17,11 +17,18 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex" style={{backgroundImage: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'}} >
         <Sidebar />
 
-        <div className="py-5 mx-3 flex-grow-1">
-          <h2>Tracker Dashboard</h2>
+        <div className="py-2 mx-3 flex-grow-1">
+
+        <div className="d-flex justify-content-between">
+        <h2 className="mb-0">Dashboard</h2>
+          <button className="btn btn-primary">
+            Logout
+          </button>
+        </div>
+          
           <hr />
 
           {/* First 3 Cards (Pipeline Status, Existing Layout) */}

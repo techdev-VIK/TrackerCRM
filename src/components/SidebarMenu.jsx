@@ -4,7 +4,7 @@ const SidebarMenu = ({isOpen}) => {
 
     return(
         <>
-          <NavLink className="work-sans-normal m-3" to="/"><span className={isOpen ? "visible-text" : "d-none"}>Tracker</span></NavLink>
+          
           <ul className="list-unstyled ps-3 mt-3">
           <li className="mt-3">
             <Link to="/dashboard" className="nav-link">
