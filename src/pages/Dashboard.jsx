@@ -7,8 +7,9 @@ const Dashboard = () => {
   const { sampleLeads:leads } = useContext(TrackerContext);
 
   // Count leads by status
-  const leadStatusCounts = leads.reduce((acc, lead) => {
-    acc[lead.status] = (acc[lead.status] || 0) + 1;
+  const leadStatusCounts = leads.reduce((acc, curr) => {
+    acc[curr.status] = (acc[curr.status] || 0) + 1;
+
     return acc;
   }, {});
 
@@ -34,7 +35,7 @@ const Dashboard = () => {
           {/* First 3 Cards (Pipeline Status, Existing Layout) */}
           <main className="">
             <div className="row">
-              <div className="col-md-4 col-sm-6">
+              <div className="col-md-4 col-sm-6 mt-2">
                 <div className="card p-1">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
@@ -51,7 +52,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="col-md-4 col-sm-6">
+              <div className="col-md-4 col-sm-6 mt-2">
                 <div className="card p-1">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
@@ -66,7 +67,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="col-md-4 col-sm-6">
+              <div className="col-md-4 col-sm-6 mt-2">
                 <div className="card p-1">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
@@ -87,7 +88,7 @@ const Dashboard = () => {
               <h4>Lead Status Overview</h4>
               <div className="row">
                 {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
-                  <div key={status} className="col-md-2 col-sm-4">
+                  <div key={status} className="col-md-2 col-sm-4 flex-grow-1 mt-2">
                     <div className="card text-center p-2">
                       <h6>{status}</h6>
                       <p className="lead">{leadStatusCounts[status] || 0}</p>
