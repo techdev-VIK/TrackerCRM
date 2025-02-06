@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="d-flex" style={{backgroundImage: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'}} >
+      <div className="d-flex" >
         <Sidebar />
 
         <div className="py-2 mx-3 flex-grow-1">
@@ -131,7 +131,7 @@ const Dashboard = () => {
             {/* Action Buttons */}
             <div className="mt-4 d-flex gap-3">
               <Link to="/lead/addLead" className="btn btn-primary">Add New Lead</Link>
-              <button className="btn btn-secondary">View Reports</button>
+              <Link to="/sales/addSaleAgent" className="btn btn-secondary">Add New Agent</Link>
             </div>
           </main>
         </div>

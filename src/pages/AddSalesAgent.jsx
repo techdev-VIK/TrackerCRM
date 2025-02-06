@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Header from "../components/Header";
 
 
 const AddSalesAgent = () => {
@@ -21,9 +22,10 @@ const AddSalesAgent = () => {
 
     return(
         <>
-            <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-                <div className="card shadow p-4" style={{maxwidth: "30rem", width: "100%"}}>
-                    <h3>Add Sales Agent</h3>
+        <Header />
+            <div className="d-flex justify-content-center align-items-center main-content my-5">
+                <div className="card shadow p-4" style={{maxWidth: "30rem", width: "100%"}}>
+                    <h3 className="text-center mb-3">Add Sales Agent</h3>
                     <hr />
 
                     <form onSubmit={formHandler}>
@@ -37,7 +39,7 @@ const AddSalesAgent = () => {
                             <input type="email" id="email" className="form-control" onChange={(e) => setEmail(e.target.value)}/>
                         </div>
 
-                        <div className="mb-3">
+                        <div className="mb-3 text-center">
                             <button type="submit" className="btn btn-primary">Add Agent</button>
                         </div>
                     </form>

@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
 
         <>
-        <div className={`sidebar mt-2 bg-light ${isOpen ? "open" : "collapsed"}`}>
+        <div className={`sidebar bg-light mt-2 ${isOpen ? "open" : "collapsed"}`}>
         <div className= "d-flex justify-content-around">
         
         <NavLink className="work-sans-normal" to="/"><span className={isOpen ? "visible-text" : "d-none"}>Tracker</span></NavLink>

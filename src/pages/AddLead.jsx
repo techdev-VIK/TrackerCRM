@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 
 
 const AddLead = () => {
@@ -24,7 +25,7 @@ const AddLead = () => {
     e.preventDefault();
 
 
-    const leadValues = {
+    const leadData = {
       name: leadName,
       source: leadSource,
       salesAgent: salesAgent,
@@ -38,7 +39,9 @@ const AddLead = () => {
   }
 
   return (
-    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <>
+    <Header />
+    <div className="d-flex justify-content-center align-items-center main-content my-5">
       <div className="card shadow p-4" style={{ maxWidth: "30rem", width: "100%" }}>
         <h3 className="text-center mb-3">Add New Lead</h3>
         <hr />
@@ -110,6 +113,7 @@ const AddLead = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

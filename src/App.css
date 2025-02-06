@@ -2,7 +2,7 @@
   --theme-color: #0D6EFF;
   display: flex;
   flex-direction: column; /* Stack header, content, and footer vertically */
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   font-family: "Work Sans", serif;
 }
 
@@ -10,7 +10,11 @@
 body, html {
   height: 100%; /* Ensure the body and HTML take full height */
   margin: 0;    /* Remove default margins */
-  
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 
@@ -57,6 +61,14 @@ body, html {
 .sidebar.collapsed{
   width: 50px;
 }
+
+.nav-link.active {
+
+  color: var(--theme-color);
+  background-color: whitesmoke;
+}
+
+
 
 @media (max-width: 767px) {
   .sidebar {

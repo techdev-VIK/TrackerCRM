@@ -12,6 +12,7 @@ import SalesAgentManagement from "./pages/SalesAgentManagement";
 import AddLead from './pages/AddLead';
 import Dashboard from './pages/Dashboard';
 import TrackerContext, { sampleLeads } from './contexts/TrackerContext';
+import AddSalesAgent from './pages/AddSalesAgent';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/lead/addLead" element={<AddLead />}/>
           <Route path="/reports" element={<ReportPage />} />
           <Route path="/sales" element={<SalesAgentManagement />}/>
+          <Route path="/sales/addSaleAgent" element={<AddSalesAgent />}/>
         </Routes>
         <Footer />
       </Router>

@@ -17,7 +17,7 @@ const Header = () => {
         </li>
 
         <li className="nav-item ms-3">
-          <NavLink className="nav-link" aria-current="page" to="/leads">Leads</NavLink>
+          <NavLink className="nav-link" aria-current="page" to="/lead">Leads</NavLink>
         </li>
 
         <li className="nav-item ms-3">

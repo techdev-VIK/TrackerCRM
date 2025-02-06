@@ -74,7 +74,7 @@ const ReportPage = () => {
   };
 
   return (
-    <div className="d-flex" style={{backgroundImage: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'}} >
+    <div className="d-flex" >
         <Sidebar />
 
         <div className="flex-grow-1 py-2 mx-3">

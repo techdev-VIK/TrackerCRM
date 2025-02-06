@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Sidebar from "../components/Sidebar";
 
 
 
@@ -20,24 +21,26 @@ const LeadDetails = () => {
   };
 
   return (
-    <div className="container-fluid">
-      <div className="row vh-100">
-        {/* Sidebar */}
-        <nav className="col-md-3 col-lg-2 d-md-block bg-dark sidebar text-white p-3">
-          <h4 className="text-center">Lead Management</h4>
-          <ul className="nav flex-column mt-3">
-            <li className="nav-item">
-              <a href="#" className="nav-link text-white">Back to Dashboard</a>
-            </li>
-          </ul>
-        </nav>
 
-        {/* Main Content */}
-        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <h4 className="mt-3">Lead Details</h4>
+
+        <div className="d-flex">
+       
+        <Sidebar />
+
+        <div className="py-2 mx-3 flex-grow-1">
+        <div className="d-flex justify-content-between">
+        <h2 className="mb-0">Lead Details</h2>
+          <button className="btn btn-primary">
+            Logout
+          </button>
+        </div>
+          
+          <hr />
 
           {/* Lead Information */}
-          <div className="card mt-3">
+          <div className="row">
+            <div className="col-md-12">
+            <div className="card mt-3">
             <div className="card-body">
               <p><strong>Lead Name:</strong> Jane Doe</p>
               <p><strong>Sales Agent:</strong> John Doe</p>
@@ -76,9 +79,10 @@ const LeadDetails = () => {
               </div>
             </div>
           </div>
-        </main>
-      </div>
-    </div>
+            </div>
+          </div>
+          </div>
+          </div>
   );
 };
 
