@@ -1,135 +1,114 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 
 const AddLead = () => {
-  const [leadName, setLeadName] = useState("");
-  const [leadSource, setLeadSource] = useState("");
-  const [salesAgents, setSalesAgents] = useState([]);
-  const [leadStatus, setLeadStatus] = useState("New");
-  const [priority, setPriority] = useState("High");
-  const [timeToClose, setTimeToClose] = useState("");
-  const [tags, setTags] = useState([]);
+  const salesAgents = ["Agent1", "Agent2", "Agent3"];
+  const [selectedOption] = useState(salesAgents);
 
-  const availableAgents = ["John Doe", "Jane Smith", "Emily Brown"];
-  const availableTags = ["Urgent", "Follow-up", "Potential"];
-  const leadSources = ["Referral", "Website", "Social Media", "Cold Call"];
-  const leadStatuses = ["New", "Contacted", "Qualified", "Closed"];
-  const priorityLevels = ["High", "Medium", "Low"];
+  const [leadName, setLeadName] = useState('');
 
-  const handleCreateLead = () => {
-    if (!leadName.trim() || !leadSource.trim() || salesAgents.length === 0 || !timeToClose.trim()) {
-      alert("Please fill out all required fields.");
-      return;
+  const [leadSource, setLeadSource] = useState('');
+
+  const [salesAgent, setSalesAgent] = useState('');
+
+  const [leadStatus, setLeadStatus] = useState('');
+
+  const [priority, setPriority] = useState('');
+
+  const [timeToClose, setTimeToClose] = useState('');
+
+  const [tags, setTags] = useState('');
+
+
+  const formHandler = (e) => {
+    e.preventDefault();
+
+
+    const leadValues = {
+      name: leadName,
+      source: leadSource,
+      salesAgent: salesAgent,
+      status: leadStatus,
+      priority: priority,
+      timeToClose: timeToClose,
+      tags: tags
     }
-    console.log("New Lead Created:", { leadName, leadSource, salesAgents, leadStatus, priority, timeToClose, tags });
-    alert("Lead Created Successfully!");
-    // Reset form
-    setLeadName("");
-    setLeadSource("");
-    setSalesAgents([]);
-    setLeadStatus("New");
-    setPriority("High");
-    setTimeToClose("");
-    setTags([]);
-  };
+
+
+  }
 
   return (
-    <div className="container d-flex justify-content-center align-items-center p-3">
-      <div className="card p-4 shadow" style={{ width: "500px" }}>
-        <h4 className="text-center">Add New Lead</h4>
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+      <div className="card shadow p-4" style={{ maxWidth: "30rem", width: "100%" }}>
+        <h3 className="text-center mb-3">Add New Lead</h3>
+        <hr />
 
-        <div className="mt-3">
-          <label className="form-label">Lead Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter lead name"
-            value={leadName}
-            onChange={(e) => setLeadName(e.target.value)}
-          />
-        </div>
+        <form onSubmit={formHandler}>
+          <div className="mb-3">
+            <label htmlFor="leadName" className="form-label">Lead Name:</label>
+            <input type="text" id="leadName" className="form-control" onChange={(e) => setLeadName(e.target.value)} required />
+          </div>
 
-        <div className="mt-3">
-          <label className="form-label">Lead Source:</label>
-          <select className="form-select" value={leadSource} onChange={(e) => setLeadSource(e.target.value)}>
-            <option value="">Select Source</option>
-            {leadSources.map((source) => (
-              <option key={source} value={source}>
-                {source}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="mb-3">
+            <label htmlFor="source" className="form-label">Lead Source:</label>
+            <select id="source" className="form-select" onChange={(e) => setLeadSource(e.target.value)} required >
+              <option value="Website">Website</option>
+              <option value="Referral">Referral</option>
+              <option value="Cold Call">Cold Call</option>
+              <option value="Advertisement">Advertisement</option>
+              <option value="Email">Email</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 
-        <div className="mt-3">
-          <label className="form-label">Sales Agent:</label>
-          <select
-            multiple
-            className="form-select"
-            value={salesAgents}
-            onChange={(e) => setSalesAgents([...e.target.selectedOptions].map((opt) => opt.value))}
-          >
-            {availableAgents.map((agent) => (
-              <option key={agent} value={agent}>
-                {agent}
-              </option>
-            ))}
-          </select>
-          
-        </div>
+          <div className="mb-3">
+            <label htmlFor="salesAgent" className="form-label">Sales Agent:</label>
+            <select id="salesAgent" className="form-select" onChange={(e) => setSalesAgent(e.target.value)} required>
+              {selectedOption.map((agent, index) => (
+                <option key={index} value={agent}>{agent}</option>
+              ))}
+            </select>
+          </div>
 
-        <div className="mt-3">
-          <label className="form-label">Lead Status:</label>
-          <select className="form-select" value={leadStatus} onChange={(e) => setLeadStatus(e.target.value)}>
-            {leadStatuses.map((status) => (
-              <option key={status} value={status}>
-                {status}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="mb-3">
+            <label htmlFor="leadStatus" className="form-label">Lead Status</label>
+            <select id="leadStatus" className="form-select" onChange={(e) => setLeadStatus(e.target.value)} required>
+               <option value="New">New</option>
+               <option value="Contacted">Contacted</option>
+               <option value="Qualified">Qualified</option>
+               <option value="Proposal Sent">Proposal Sent</option>
+               <option value="Closed">Closed</option>
+            </select>
+          </div>
 
-        <div className="mt-3">
-          <label className="form-label">Priority:</label>
-          <select className="form-select" value={priority} onChange={(e) => setPriority(e.target.value)}>
-            {priorityLevels.map((level) => (
-              <option key={level} value={level}>
-                {level}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="mb-3">
+            <label htmlFor="priority" className="form-label">Priority</label>
+            <select id="priority" className="form-select" onChange={(e) => setPriority(e.target.value)} required>
+               <option value="High">High</option>
+               <option value="Medium">Medium</option>
+               <option value="Low">Low</option>
+            </select>
+          </div>
 
-        <div className="mt-3">
-          <label className="form-label">Time to Close (Days):</label>
-          <input
-            type="number"
-            className="form-control"
-            placeholder="Enter estimated time"
-            value={timeToClose}
-            onChange={(e) => setTimeToClose(e.target.value)}
-          />
-        </div>
+          <div className="mb-3">
+            <label htmlFor="timeToClose" className="form-label">Time To Close</label>
+            <input type="number" className="form-control" onChange={(e) => setTimeToClose(e.target.value)} required/>
+          </div>
 
-        <div className="mt-3">
-          <label className="form-label">Tags:</label>
-          <select
-            multiple
-            className="form-select"
-            value={tags}
-            onChange={(e) => setTags([...e.target.selectedOptions].map((opt) => opt.value))}
-          >
-            {availableTags.map((tag) => (
-              <option key={tag} value={tag}>
-                {tag}
-              </option>
-            ))}
-          </select>
-          
-        </div>
-
-        <button className="btn btn-primary mt-4 w-100" onClick={handleCreateLead}>
-          Create Lead
-        </button>
+          <div className="mb-3">
+            <label htmlFor="tags" className="form-label">Tags</label>
+            <select id="tags" className="form-select" onChange={(e) => setTags(e.target.value)}>
+               <option value="High Value">High Value</option>
+               <option value="Follow Up">Follow Up</option>
+               <option value="Complete">Complete</option>
+            </select>
+          </div>
+            
+            <div className="mb-3 text-center">
+            <button type="submit" className="btn btn-primary">Submit</button>
+            </div>
+            
+        </form>
       </div>
     </div>
   );

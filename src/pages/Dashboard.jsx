@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import Sidebar from "../components/Sidebar";
 import TrackerContext from "../contexts/TrackerContext";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { sampleLeads:leads } = useContext(TrackerContext);
@@ -129,7 +130,7 @@ const Dashboard = () => {
 
             {/* Action Buttons */}
             <div className="mt-4 d-flex gap-3">
-              <button className="btn btn-primary">Add New Lead</button>
+              <Link to="/lead/addLead" className="btn btn-primary">Add New Lead</Link>
               <button className="btn btn-secondary">View Reports</button>
             </div>
           </main>
