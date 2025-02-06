@@ -105,9 +105,8 @@ const AddLead = () => {
           </div>
             
             <div className="mb-3 text-center">
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Add Lead</button>
             </div>
-            
         </form>
       </div>
     </div>
