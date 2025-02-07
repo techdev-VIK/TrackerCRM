@@ -116,8 +116,8 @@ const Dashboard = () => {
               <h4>Top Priority Leads</h4>
               <ul className="list-group">
                 {highPriorityLeads.length > 0 ? (
-                  highPriorityLeads.map((lead) => (
-                    <li key={lead.id} className="list-group-item d-flex justify-content-between">
+                  highPriorityLeads.map((lead, index) => (
+                    <li key={index} className="list-group-item d-flex justify-content-between">
                       <span>{lead.name} ({lead.source})</span>
                       <span className="badge bg-danger">High</span>
                     </li>
@@ -129,7 +129,7 @@ const Dashboard = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-4 d-flex gap-3">
+            <div className="my-4 d-flex gap-3">
               <Link to="/lead/addLead" className="btn btn-primary">Add New Lead</Link>
               <Link to="/sales/addSaleAgent" className="btn btn-secondary">Add New Agent</Link>
             </div>

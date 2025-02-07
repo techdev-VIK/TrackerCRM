@@ -17,7 +17,7 @@ const SidebarMenu = ({isOpen}) => {
             </NavLink>
           </li>
           <li className="mt-3">
-            <NavLink to="/sales/addSaleAgent" className="nav-link p-2">
+            <NavLink to="/salesAgents" className="nav-link p-2">
             <span className="fs-5 text-primary bi bi-headset me-2"></span><span className={isOpen ? "fs-6 visible-text fw-semibold" : "d-none"}>Agents</span>
             </NavLink>
           </li>

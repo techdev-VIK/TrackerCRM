@@ -8,12 +8,13 @@ import HomePage from './pages/HomePage'
 import Footer from "./components/Footer";
 import LeadDetails from "./pages/LeadDetails";
 import ReportPage from "./pages/ReportPage";
-import SalesAgentManagement from "./pages/SalesAgentManagement";
 import AddLead from './pages/AddLead';
 import Dashboard from './pages/Dashboard';
 import TrackerContext, { sampleLeads } from './contexts/TrackerContext';
 import AddSalesAgent from './pages/AddSalesAgent';
 import LeadList from './pages/LeadList';
+import SalesAgentList from './pages/SalesAgentList';
+import SalesAgentDetails from './pages/SalesAgentDetails';
 
 function App() {
 
@@ -28,7 +29,8 @@ function App() {
           <Route path="/lead/details/:id" element={<LeadDetails />}/>
           <Route path="/lead/addLead" element={<AddLead />}/>
           <Route path="/reports" element={<ReportPage />} />
-          <Route path="/sales" element={<SalesAgentManagement />}/>
+          <Route path="/salesAgents" element={<SalesAgentList />}/>
+          <Route path="/salesAgents/details/:id" element={<SalesAgentDetails />}/>
           <Route path="/sales/addSaleAgent" element={<AddSalesAgent />}/>
         </Routes>
         <Footer />

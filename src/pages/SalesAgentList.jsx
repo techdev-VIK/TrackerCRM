@@ -4,9 +4,25 @@ import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
 
 
-const LeadList = () => {
+const SalesAgentList = () => {
 
     const { sampleLeads:leads } = useContext(TrackerContext);
+
+    const agents = [
+        { id: 1, name: 'John Doe', email: 'john@example.com' },
+        { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+        { id: 3, name: 'Michael Brown', email: 'michael.brown@example.com' },
+        { id: 4, name: 'Emily Davis', email: 'emily.davis@example.com' },
+        { id: 5, name: 'David Wilson', email: 'david.wilson@example.com' },
+        { id: 6, name: 'Olivia Johnson', email: 'olivia.johnson@example.com' },
+        { id: 7, name: 'Chris Martin', email: 'chris.martin@example.com' },
+        { id: 8, name: 'Sophia Lee', email: 'sophia.lee@example.com' },
+        { id: 9, name: 'Daniel Clark', email: 'daniel.clark@example.com' },
+        { id: 10, name: 'Ava Walker', email: 'ava.walker@example.com' },
+        { id: 11, name: 'James Hall', email: 'james.hall@example.com' },
+        { id: 12, name: 'Isabella Young', email: 'isabella.young@example.com' }
+      ];
+      
 
     return(
         <>
@@ -17,17 +33,17 @@ const LeadList = () => {
             <div className="py-2 mx-3 flex-grow-1">
                
             <div className="d-flex justify-content-between">
-            <h2 className="mb-0">Lead Overview</h2>
-            <Link to="/lead/addLead" className="btn btn-primary">
-                + Add Lead
+            <h2 className="mb-0">Sales Agent Overview</h2>
+            <Link to="/sales/addSaleAgent" className="btn btn-primary">
+                + Add Agent
             </Link>
             </div>
 
-                <hr />
+            <hr />
 
             <div className="row mt-3 mx-3">
 
-            <div className="col-md-12 d-flex justify-content-between mb-3">
+            {/* <div className="col-md-12 d-flex justify-content-between mb-3">
 
                 <div >
                     <input type="search" placeholder="Search by agent..." className="form-control w-100"/>
@@ -55,11 +71,9 @@ const LeadList = () => {
                 </div>
                 </div>
                 
-            </div>
+                
+            </div> */}
 
-            <div>
-
-            </div>
             
             <div className="col-md-12">
                 <div className="card p-0">
@@ -67,18 +81,18 @@ const LeadList = () => {
                     <thead className="table-primary">
                     <tr>
                         <th>Name</th>
-                        <th>Status</th>
-                        <th>Sales Agent</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {leads.map((lead, index) => (
+                    {agents.map((agent, index) => (
                         <tr key={index}>
-                            <td>{lead.name}</td>
-                            <td>{lead.status}</td>
-                            <td>{lead.salesAgent}</td>
-                            <td><Link className="btn btn-sm btn-success" to={`/lead/details/${lead._id}`}>Details</Link></td>
+                            <td>{agent.name}</td>
+                            <td>{agent.email}</td>
+                            <td>
+                            <Link to={`/salesAgent/details/${agent.id}`} className="btn btn-sm btn-success">Details</Link>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
@@ -95,4 +109,4 @@ const LeadList = () => {
     )
 }
 
-export default LeadList;
+export default SalesAgentList;
