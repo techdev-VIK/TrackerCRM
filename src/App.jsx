@@ -13,6 +13,7 @@ import AddLead from './pages/AddLead';
 import Dashboard from './pages/Dashboard';
 import TrackerContext, { sampleLeads } from './contexts/TrackerContext';
 import AddSalesAgent from './pages/AddSalesAgent';
+import LeadList from './pages/LeadList';
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<Dashboard />}/>
-          <Route path="/lead" element={<LeadDetails />}/>
+          <Route path="/lead" element={<LeadList />}/>
+          <Route path="/lead/details" element={<LeadDetails />}/>
           <Route path="/lead/addLead" element={<AddLead />}/>
           <Route path="/reports" element={<ReportPage />} />
           <Route path="/sales" element={<SalesAgentManagement />}/>

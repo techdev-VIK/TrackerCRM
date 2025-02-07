@@ -63,9 +63,9 @@ body, html {
 }
 
 .nav-link.active {
-
   color: var(--theme-color);
-  background-color: whitesmoke;
+  background-color: rgb(216, 216, 255);
+  border-radius: 1rem;
 }
 
 
