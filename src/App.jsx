@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/lead" element={<LeadList />}/>
-          <Route path="/lead/details" element={<LeadDetails />}/>
+          <Route path="/lead/details/:id" element={<LeadDetails />}/>
           <Route path="/lead/addLead" element={<AddLead />}/>
           <Route path="/reports" element={<ReportPage />} />
           <Route path="/sales" element={<SalesAgentManagement />}/>

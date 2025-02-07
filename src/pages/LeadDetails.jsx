@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar";
+import { useParams } from "react-router-dom";
+import TrackerContext from "../contexts/TrackerContext";
 
 
 
 const LeadDetails = () => {
+
+  const { sampleLeads:leads } = useContext(TrackerContext);
+
+
+  const {id} = useParams();
+
   const [comments, setComments] = useState([
     { author: "John Doe", date: "2025-01-31 10:00 AM", text: "Reached out, waiting..." },
   ]);
   const [newComment, setNewComment] = useState("");
+
+
 
   const handleCommentSubmit = () => {
     if (newComment.trim() === "") return;
@@ -19,6 +29,11 @@ const LeadDetails = () => {
     setComments([...comments, newEntry]);
     setNewComment("");
   };
+
+  const leadDetails = leads.find((lead, index) => lead._id === id)
+
+  console.log(leadDetails);
+
 
   return (
 
@@ -39,20 +54,45 @@ const LeadDetails = () => {
 
           {/* Lead Information */}
           <div className="row">
-            <div className="col-md-12">
+          <div className="col-md-12">
             <div className="card mt-3">
-            <div className="card-body">
-              <p><strong>Lead Name:</strong> Jane Doe</p>
-              <p><strong>Sales Agent:</strong> John Doe</p>
-              <p><strong>Lead Source:</strong> Referral</p>
-              <p><strong>Lead Status:</strong> New</p>
-              <p><strong>Priority:</strong> High</p>
-              <p><strong>Time to Close:</strong> 30 Days</p>
-              <button className="btn btn-primary">Edit Lead Details</button>
+              <div className="card-body">
+                <table className="table table-bordered table-hover">
+                  <tbody>
+                    <tr>
+                      <th>Lead Name</th>
+                      <td>{leadDetails.name}</td>
+                    </tr>
+                    <tr>
+                      <th>Sales Agent</th>
+                      <td>{leadDetails.salesAgent}</td>
+                    </tr>
+                    <tr>
+                      <th>Lead Source</th>
+                      <td>{leadDetails.source}</td>
+                    </tr>
+                    <tr>
+                      <th>Lead Status</th>
+                      <td>{leadDetails.status}</td>
+                    </tr>
+                    <tr>
+                      <th>Priority</th>
+                      <td>{leadDetails.priority}</td>
+                    </tr>
+                    <tr>
+                      <th>Time to Close</th>
+                      <td>{leadDetails.timeToClose} Days</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button className="btn btn-primary">Edit Lead Details</button>
+              </div>
             </div>
           </div>
+            
 
           {/* Comments Section */}
+          <div className="col-md-12">
           <div className="card mt-3">
             <div className="card-body">
               <h5 className="card-title">Comments</h5>

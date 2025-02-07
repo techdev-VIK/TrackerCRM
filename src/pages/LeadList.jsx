@@ -43,7 +43,7 @@ const LeadList = () => {
                                            <td>{lead.name}</td>
                                            <td>{lead.status}</td>
                                            <td>{lead.salesAgent}</td>
-                                           <td><Link className="btn btn-sm btn-success" to="/lead/details">Details</Link></td>
+                                           <td><Link className="btn btn-sm btn-success" to={`/lead/details/${lead._id}`}>Details</Link></td>
                                         </tr>
                                     ))}
                                 </tbody>
