@@ -10,7 +10,7 @@ const Header = () => {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
       <li className="nav-item ms-3">
           <NavLink className="nav-link" aria-current="page" to="/dashboard">Dashboard</NavLink>
@@ -21,15 +21,19 @@ const Header = () => {
         </li>
 
         <li className="nav-item ms-3">
-          <NavLink className="nav-link" to="/reports">Reports</NavLink>
+          <NavLink className="nav-link" aria-current="page" to="/agents">Agents</NavLink>
         </li>
 
         <li className="nav-item ms-3">
           <NavLink className="nav-link" to="/sales">Sales</NavLink>
         </li>
+
+        <li className="nav-item ms-3">
+          <NavLink className="nav-link" to="/reports">Reports</NavLink>
+        </li>
+
         
       </ul>
-      <button className="btn btn-primary">Get started free</button>
     </div>
   </div>
 </nav>

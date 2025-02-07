@@ -15,6 +15,7 @@ const LeadDetails = () => {
   const [comments, setComments] = useState([
     { author: "John Doe", date: "2025-01-31 10:00 AM", text: "Reached out, waiting..." },
   ]);
+
   const [newComment, setNewComment] = useState("");
 
 
@@ -30,7 +31,7 @@ const LeadDetails = () => {
     setNewComment("");
   };
 
-  const leadDetails = leads.find((lead, index) => lead._id === id)
+  const leadDetails = leads.find((lead) => lead._id === id)
 
   console.log(leadDetails);
 
@@ -95,28 +96,32 @@ const LeadDetails = () => {
           <div className="col-md-12">
           <div className="card mt-3">
             <div className="card-body">
-              <h5 className="card-title">Comments</h5>
-              <ul className="list-group">
-                {comments.map((comment, index) => (
+              <h5 className="card-title">Discussions:</h5>
+
+              {/* Add Comment */}
+              <div className="mb-3">
+                <textarea
+                  type="text"
+                  rows="3"
+                  className="form-control"
+                  placeholder="Add a new comment..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                ></textarea>
+                <button className="btn btn-success mt-2 " onClick={handleCommentSubmit}>
+                  Comment
+                </button>
+              </div>
+
+              <ul className="list-group mt-3">
+                {comments.slice().reverse().map((comment, index) => (
                   <li key={index} className="list-group-item">
                     <p><strong>{comment.author}</strong> - <small>{comment.date}</small></p>
                     <p>{comment.text}</p>
                   </li>
                 ))}
               </ul>
-              {/* Add Comment */}
-              <div className="mt-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Add a new comment..."
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                />
-                <button className="btn btn-success mt-2" onClick={handleCommentSubmit}>
-                  Submit Comment
-                </button>
-              </div>
+              
             </div>
           </div>
             </div>
