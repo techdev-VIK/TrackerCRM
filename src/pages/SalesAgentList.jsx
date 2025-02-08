@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar"
 import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
@@ -22,7 +22,11 @@ export const agents = [
 
 const SalesAgentList = () => {
 
-    const { sampleLeads:leads } = useContext(TrackerContext);
+    
+    const [searchAgent, setAgentSearch] = useState('');
+
+
+    const filteredArray = agents.filter((agent) => agent.name.toLowerCase().includes(searchAgent.toLowerCase()))
       
 
     return(
@@ -44,36 +48,15 @@ const SalesAgentList = () => {
 
             <div className="row mt-3 mx-3">
 
-            {/* <div className="col-md-12 d-flex justify-content-between mb-3">
+            <div className="col-md-12 d-flex justify-content-start mb-3">
 
                 <div >
-                    <input type="search" placeholder="Search by agent..." className="form-control w-100"/>
-                </div>
-
-
-                <div className="d-flex ">
-                <div className="me-3">
-                <select id="filterByStatus" className="form-select">
-                    <option value="">Filter By Status</option>
-                    <option value="New">New</option>
-                    <option value="Contacted">Contacted</option>
-                    <option value="Qualified">Qualified</option>
-                    <option value="Proposal Sent">Proposal Sent</option>
-                    <option value="Closed">Closed</option>
-                </select>
-                </div>
-
-                <div>
-                    <select id="" className="form-select">
-                        <option value="">Sort By</option>
-                        <option value="Priority">Priority</option>
-                        <option value="Time To Close">Time To Close</option>
-                    </select>
-                </div>
+                    <input type="search"
+                    onChange={(e) => setAgentSearch(e.target.value)}
+                    placeholder="Search by agent..." className="form-control w-100"/>
                 </div>
                 
-                
-            </div> */}
+            </div>
 
             
             <div className="col-md-12">
@@ -87,15 +70,30 @@ const SalesAgentList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {agents.map((agent, index) => (
-                        <tr key={index}>
-                            <td>{agent.name}</td>
+                    {filteredArray.map((agent) => {
+                        
+                        const name = agent.name;
+
+                        const index = name.toLowerCase().indexOf(searchAgent.toLowerCase());
+
+
+                        const beforeMatch = name.substring(0, index);
+
+                        const matchText = name.substring(index, index + searchAgent.length);
+
+                        const afterMatch = name.substring(index + searchAgent.length);
+
+                    return(
+                            <tr key={agent.id}>
+                            <td>{beforeMatch}<span className="bg-warning">{matchText}</span>{afterMatch}</td>
                             <td>{agent.email}</td>
                             <td>
                             <Link to={`/salesAgents/details/${agent.id}`} className="btn btn-sm btn-success">Details</Link>
                             </td>
                         </tr>
-                    ))}
+                    )
+                        
+                    })}
                     </tbody>
                 </table>
                 </div>
