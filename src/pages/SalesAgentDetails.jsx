@@ -1,39 +1,18 @@
-import React, { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import { useParams } from "react-router-dom";
-import TrackerContext from "../contexts/TrackerContext";
-
+import { Link, useParams } from "react-router-dom";
+import { agents } from "./SalesAgentList";
 
 
 const SalesAgentDetails = () => {
 
-  const { sampleLeads:leads } = useContext(TrackerContext);
-
 
   const {id} = useParams();
 
-  const [comments, setComments] = useState([
-    { author: "John Doe", date: "2025-01-31 10:00 AM", text: "Reached out, waiting..." },
-  ]);
+  // console.log(id);
 
-  const [newComment, setNewComment] = useState("");
+  const agentDetails = agents.find((agent) => agent.id == id)
 
-
-
-  const handleCommentSubmit = () => {
-    if (newComment.trim() === "") return;
-    const newEntry = {
-      author: "You",
-      date: new Date().toLocaleString(),
-      text: newComment,
-    };
-    setComments([...comments, newEntry]);
-    setNewComment("");
-  };
-
-  const leadDetails = leads.find((lead) => lead._id === id)
-
-  console.log(leadDetails);
+  // console.log(agentDetails);
 
 
   return (
@@ -45,10 +24,10 @@ const SalesAgentDetails = () => {
 
         <div className="py-2 mx-3 flex-grow-1">
         <div className="d-flex justify-content-between">
-        <h2 className="mb-0">Lead Details</h2>
-          <button className="btn btn-primary">
-            Logout
-          </button>
+        <h2 className="mb-0">Agent Details</h2>
+          <Link to="/sales/addSaleAgent" className="btn btn-primary">
+            + Add Agent
+          </Link>
         </div>
           
           <hr />
@@ -61,70 +40,19 @@ const SalesAgentDetails = () => {
                 <table className="table table-bordered table-hover">
                   <tbody>
                     <tr>
-                      <th>Lead Name</th>
-                      <td>{leadDetails.name}</td>
+                      <th>Agent Name</th>
+                      <td>{agentDetails.name}</td>
                     </tr>
                     <tr>
-                      <th>Sales Agent</th>
-                      <td>{leadDetails.salesAgent}</td>
-                    </tr>
-                    <tr>
-                      <th>Lead Source</th>
-                      <td>{leadDetails.source}</td>
-                    </tr>
-                    <tr>
-                      <th>Lead Status</th>
-                      <td>{leadDetails.status}</td>
-                    </tr>
-                    <tr>
-                      <th>Priority</th>
-                      <td>{leadDetails.priority}</td>
-                    </tr>
-                    <tr>
-                      <th>Time to Close</th>
-                      <td>{leadDetails.timeToClose} Days</td>
+                      <th>Agent Email</th>
+                      <td>{agentDetails.email}</td>
                     </tr>
                   </tbody>
                 </table>
-                <button className="btn btn-primary">Edit Lead Details</button>
+                <button className="btn btn-primary">Edit Agent Details</button>
               </div>
             </div>
           </div>
-            
-
-          {/* Comments Section */}
-          <div className="col-md-12">
-          <div className="card mt-3">
-            <div className="card-body">
-              <h5 className="card-title">Discussions:</h5>
-
-              {/* Add Comment */}
-              <div className="mb-3">
-                <textarea
-                  type="text"
-                  rows="3"
-                  className="form-control"
-                  placeholder="Add a new comment..."
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                ></textarea>
-                <button className="btn btn-success mt-2 " onClick={handleCommentSubmit}>
-                  Comment
-                </button>
-              </div>
-
-              <ul className="list-group mt-3">
-                {comments.slice().reverse().map((comment, index) => (
-                  <li key={index} className="list-group-item">
-                    <p><strong>{comment.author}</strong> - <small>{comment.date}</small></p>
-                    <p>{comment.text}</p>
-                  </li>
-                ))}
-              </ul>
-              
-            </div>
-          </div>
-            </div>
           </div>
           </div>
           </div>

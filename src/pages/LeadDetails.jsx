@@ -33,7 +33,7 @@ const LeadDetails = () => {
 
   const leadDetails = leads.find((lead) => lead._id === id)
 
-  console.log(leadDetails);
+  // console.log(leadDetails);
 
 
   return (
