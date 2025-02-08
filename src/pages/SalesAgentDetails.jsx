@@ -49,7 +49,7 @@ const SalesAgentDetails = () => {
                     </tr>
                   </tbody>
                 </table>
-                <button className="btn btn-primary">Edit Agent Details</button>
+                <Link className="btn btn-primary" to="/sales/addSaleAgent" state={{agentValues: agentDetails}}>Edit Agent Details</Link>
               </div>
             </div>
           </div>

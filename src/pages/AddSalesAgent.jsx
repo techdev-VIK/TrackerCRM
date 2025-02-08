@@ -1,13 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Header from "../components/Header";
+import { useLocation } from "react-router-dom";
 
 
 const AddSalesAgent = () => {
 
+    const location = useLocation();
 
-    const [name, setName] = useState('');
+    const agentValues = location.state?.agentValues;
 
-    const [email, setEmail] = useState('');
+    const [name, setName] = useState(agentValues?.name || '');
+
+    const [email, setEmail] = useState(agentValues?.email || '');
+
+
+
+    // useEffect(() => {
+    //     if(agentValues){
+    //         setName(agentValues.name);
+    //         setEmail(agentValues.email);
+    //     }else{
+    //         setName('');
+    //         setEmail('');
+    //     }
+    // }, [agentValues]);
+    
 
 
     const formHandler = (e) => {
@@ -31,16 +48,20 @@ const AddSalesAgent = () => {
                     <form onSubmit={formHandler}>
                         <div className="mb-3">
                             <label htmlFor="agentName" className="form-label">Agent Name: </label>
-                            <input type="text" id="agentName" className="form-control" onChange={(e) => setName(e.target.value)}/>
+                            <input type="text" id="agentName" className="form-control"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}/>
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email Address: </label>
-                            <input type="email" id="email" className="form-control" onChange={(e) => setEmail(e.target.value)}/>
+                            <input type="email" id="email" className="form-control"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}/>
                         </div>
 
                         <div className="mb-3 text-center">
-                            <button type="submit" className="btn btn-primary">Add Agent</button>
+                            <button type="submit" className="btn btn-primary">{agentValues ? "Update":"Add"} Agent</button>
                         </div>
                     </form>
                 </div>
