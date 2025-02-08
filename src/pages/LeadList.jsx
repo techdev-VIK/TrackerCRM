@@ -49,12 +49,13 @@ const LeadList = () => {
 
             <div className="col-md-12 d-flex justify-content-between mb-3">
 
-                <div >
-                    <input type="search" placeholder="Search by lead..." className="form-control w-100" value={searchLead} onChange={(e) => setSearchLead(e.target.value)}/>
+                <div>
+                    <input type="search"
+                     placeholder="Search by lead..." className="form-control w-100" value={searchLead} onChange={(e) => setSearchLead(e.target.value)}/>
                 </div>
 
 
-                <div className="d-flex ">
+                <div className="d-flex">
                 <div className="me-3">
                 <select id="filterByStatus" className="form-select" onChange={(e) => setStatusLead(e.target.value)}>
                     <option value="">Filter By Status</option>

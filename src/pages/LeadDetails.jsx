@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TrackerContext from "../contexts/TrackerContext";
 
 
@@ -46,9 +46,9 @@ const LeadDetails = () => {
         <div className="py-2 mx-3 flex-grow-1">
         <div className="d-flex justify-content-between">
         <h2 className="mb-0">Lead Details</h2>
-          <button className="btn btn-primary">
-            Logout
-          </button>
+        <Link to="/lead/addLead" className="btn btn-primary">
+            + Add Lead
+        </Link>
         </div>
           
           <hr />
@@ -84,9 +84,13 @@ const LeadDetails = () => {
                       <th>Time to Close</th>
                       <td>{leadDetails.timeToClose} Days</td>
                     </tr>
+                    <tr>
+                      <th>Active Tags</th>
+                      <td>{leadDetails.tags.map((tag) => <button key={tag.value} className="btn btn-sm btn-outline-primary me-2">{tag.label}</button>)}</td>
+                    </tr>
                   </tbody>
                 </table>
-                <button className="btn btn-primary">Edit Lead Details</button>
+                <Link to="/lead/addLead" className="btn btn-primary" state={{leadValues: leadDetails}}>Edit Lead Details</Link>
               </div>
             </div>
           </div>
@@ -96,7 +100,7 @@ const LeadDetails = () => {
           <div className="col-md-12">
           <div className="card mt-3">
             <div className="card-body">
-              <h5 className="card-title">Discussions:</h5>
+              <h5 className="card-title">Comments:</h5>
 
               {/* Add Comment */}
               <div className="mb-3">
@@ -108,8 +112,8 @@ const LeadDetails = () => {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                 ></textarea>
-                <button className="btn btn-success mt-2 " onClick={handleCommentSubmit}>
-                  Comment
+                <button className="btn btn-sm btn-success mt-2 " onClick={handleCommentSubmit}>
+                  Add Comment
                 </button>
               </div>
 
