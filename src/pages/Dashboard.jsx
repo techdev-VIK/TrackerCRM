@@ -19,7 +19,7 @@ const Dashboard = () => {
   }, {});
 
 
-  const yearlyForecast = leads.reduce((acc, curr) => {
+  const totalInPipeline = leads.reduce((acc, curr) => {
     acc = curr.budget + acc
 
     return acc
@@ -27,6 +27,14 @@ const Dashboard = () => {
 
 
   const monthlyForecast = leads.reduce((acc, curr) => {
+    if(curr.timeToClose <= 30){
+        acc = curr.budget + acc
+    }
+    return acc
+  }, 0).toLocaleString("en-US");
+
+
+  const weeklyForecast = leads.reduce((acc, curr) => {
     if(curr.timeToClose <= 7){
         acc = curr.budget + acc
     }
@@ -98,13 +106,13 @@ const Dashboard = () => {
                 <div className="card p-1">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
-                      <h4>Annual Forecast</h4>
+                      <h4>Weekly Forecast</h4>
                       <span className="bi bi-people me-2"></span>
                     </div>
                   </div>
                   <div className="card-body">
-                    <h5>${yearlyForecast}</h5>
-                    <small>Projected for this year</small>
+                    <h5>${weeklyForecast}</h5>
+                    <small>Projected for this week</small>
                   </div>
                 </div>
               </div>
@@ -118,7 +126,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className="card-body">
-                    <h5>$40,000</h5>
+                    <h5>${totalInPipeline}</h5>
                     <small>Active leads · {leads.length} Leads in Pipeline</small>
                   </div>
                 </div>

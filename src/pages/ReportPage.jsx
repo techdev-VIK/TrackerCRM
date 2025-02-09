@@ -95,7 +95,7 @@ const ReportPage = () => {
 
           
           <div className="row d-flex justify-content-center align-content-center">
-          <div className="col-md-6 mt-3 ">
+          <div className="col-md-6 mt-3 text-center">
           <div className="card">
           <h4>Total Leads (Closed vs In Pipeline)</h4>
           <Pie data={getTotalLeads()}/>
@@ -106,7 +106,7 @@ const ReportPage = () => {
         {/* Bar Chart for Leads Closed by Sales Agent */}
 
         <div className="row d-flex justify-content-center align-content-center">
-        <div className="col-md-6 mt-3">
+        <div className="col-md-6 mt-3 text-center">
         <div className="card">
           <h4>Leads Closed by Sales Agent</h4>
           <Bar data={getLeadsBySalesAgent()} />

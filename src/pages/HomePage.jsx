@@ -1,4 +1,6 @@
+import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 
 const HomePage = () => {
@@ -12,7 +14,7 @@ const HomePage = () => {
       <h2 className="display-3 fw-bold py-5">Track every move, drive every sale. Simplify your workflow with <span className="text-primary">Tracker CRM</span></h2>
       <p className="mx-3 text-center fs-5 fw-light">From lead management to customer relationships, stay ahead with real-time insights and seamless automation. Your business, always on track.</p>
 
-      <button className="btn btn-primary mt-5">Get started free</button>
+      <NavLink  to="/dashboard"  className="btn btn-primary mt-5">Get started free</NavLink>
       </section>
       
       <section className="m-5 text-center">
@@ -74,7 +76,8 @@ const HomePage = () => {
         </div>
         </div>
       </section>
-    </main>  
+    </main>
+    <Footer />
     </>
   )
 }

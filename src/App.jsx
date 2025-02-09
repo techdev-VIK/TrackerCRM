@@ -35,7 +35,6 @@ function App() {
           <Route path="/sales/addSaleAgent" element={<AddSalesAgent />}/>
           <Route path="/sales" element={<SalesData />}/>
         </Routes>
-        <Footer />
       </Router>
       </TrackerContext.Provider>
     </>
