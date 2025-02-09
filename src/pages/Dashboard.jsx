@@ -19,6 +19,22 @@ const Dashboard = () => {
   }, {});
 
 
+  const yearlyForecast = leads.reduce((acc, curr) => {
+    acc = curr.budget + acc
+
+    return acc
+  }, 0).toLocaleString("en-US");
+
+
+  const monthlyForecast = leads.reduce((acc, curr) => {
+    if(curr.timeToClose <= 7){
+        acc = curr.budget + acc
+    }
+    return acc
+  }, 0).toLocaleString("en-US");
+
+
+
   useEffect(() => {
     const highData = leads.filter((lead) => lead.priority === "High");
     setPriorityLeads(highData);
@@ -44,33 +60,33 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="d-flex" >
+      <div className="d-flex">
         <Sidebar />
 
-        <div className="py-2 mx-3 flex-grow-1">
+        <div className="my-2 mx-3 flex-grow-1">
 
         <div className="d-flex justify-content-between">
         <h2 className="mb-0">Dashboard</h2>
-          <button className="btn btn-primary">
-            Logout
-          </button>
+          <Link to="/sales" className="btn btn-primary">
+            Sales
+          </Link>
         </div>
           
           <hr />
 
           {/* First 3 Cards (Pipeline Status, Existing Layout) */}
-          <main className="">
+          <main className="mb-5">
             <div className="row">
               <div className="col-md-4 col-sm-6 mt-2">
                 <div className="card p-1">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
-                      <h4>Monthly Residuals</h4>
+                      <h4>Monthly Forecast</h4>
                       <div>$</div>
                     </div>
                   </div>
                   <div className="card-body">
-                    <h5>$40,000</h5>
+                    <h5>${monthlyForecast}</h5>
                     <small>
                       <span className="text-success">+15.69%</span> from last month
                     </small>
@@ -82,12 +98,12 @@ const Dashboard = () => {
                 <div className="card p-1">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
-                      <h4>Annual Residuals</h4>
+                      <h4>Annual Forecast</h4>
                       <span className="bi bi-people me-2"></span>
                     </div>
                   </div>
                   <div className="card-body">
-                    <h5>$440,000</h5>
+                    <h5>${yearlyForecast}</h5>
                     <small>Projected for this year</small>
                   </div>
                 </div>
@@ -103,7 +119,7 @@ const Dashboard = () => {
                   </div>
                   <div className="card-body">
                     <h5>$40,000</h5>
-                    <small>Active leads · 12 new this month</small>
+                    <small>Active leads · {leads.length} Leads in Pipeline</small>
                   </div>
                 </div>
               </div>

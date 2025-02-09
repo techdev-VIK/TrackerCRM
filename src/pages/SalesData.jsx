@@ -38,7 +38,7 @@ const SalesData = () => {
                
             <div className="d-flex justify-content-between">
             <h2 className="mb-0">Sales Overview</h2>
-            <Link to="/lead/addLead" className="btn btn-primary">
+            <Link to="/reports" className="btn btn-primary">
                 Reports
             </Link>
             </div>
@@ -91,12 +91,13 @@ const SalesData = () => {
                                 <h4>{beforeMatch}{matchText}{afterMatch}</h4>
                                 
                             </div>
-                            <div className="card-body">
-                                <h5>Budget: <span className="text-success">$ {lead.budget}</span></h5>
-                                <small>
+                            <div className="card-body p-2">
+                                <h5 className="mb-3">Budget: <span className="text-success">$ {lead.budget}</span></h5>
+                                <div className="mb-3">Time To Close: <span className="text-danger">{lead.timeToClose}</span></div>
+                                <div >
                                 Sales Agent   
-                                <span className=" ms-2 text-primary">{lead.salesAgent}</span> 
-                                </small>
+                                <span className="ms-2 text-primary">{lead.salesAgent}</span> 
+                                </div>
                             </div>
                             </div>
                             </div>

@@ -3,6 +3,7 @@ import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
 import TrackerContext from "../contexts/TrackerContext";
 import Sidebar from "../components/Sidebar";
+import { Link } from "react-router-dom";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -81,38 +82,54 @@ const ReportPage = () => {
 
         <div className="d-flex justify-content-between">
         <h2 className="mb-0">Reports</h2>
-          <button className="btn btn-primary">
-            Logout
-          </button>
+          <Link to="/sales" className="btn btn-primary">
+            Sales
+          </Link>
         </div>
           
           <hr />
         
         {/* Pie Chart for Total Leads (Closed vs In Pipeline) */}
 
-        <div className="row">
-          <div className="col-md-6">
-          <div>
-          <h4>Total Leads (Closed vs In Pipeline)</h4>
-          <Pie data={getTotalLeads()} />
-        </div>
+          <div className="mb-5">
 
+          
+          <div className="row d-flex justify-content-center align-content-center">
+          <div className="col-md-6 mt-3 ">
+          <div className="card">
+          <h4>Total Leads (Closed vs In Pipeline)</h4>
+          <Pie data={getTotalLeads()}/>
+          </div>
+          </div>
+          </div>
+          
         {/* Bar Chart for Leads Closed by Sales Agent */}
-        <div>
+
+        <div className="row d-flex justify-content-center align-content-center">
+        <div className="col-md-6 mt-3">
+        <div className="card">
           <h4>Leads Closed by Sales Agent</h4>
           <Bar data={getLeadsBySalesAgent()} />
         </div>
-
+        </div>
+        </div>
+        
         {/* Pie Chart for Lead Status Distribution */}
-        <div>
+
+        <div className="row d-flex justify-content-center align-content-center">
+        <div className="col-md-6 mt-3 text-center">
+        <div className="card">
           <h4>Lead Status Distribution</h4>
           <Pie data={getLeadStatusDistribution()} />
         </div>
-          </div>
+        </div>
         </div>
         
-      </div>
-    </div>
+          </div>
+          </div>
+
+        </div>
+        
   );
 };
 

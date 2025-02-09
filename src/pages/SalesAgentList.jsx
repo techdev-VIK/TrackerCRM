@@ -59,7 +59,7 @@ const SalesAgentList = () => {
             </div>
 
             
-            <div className="col-md-12">
+            <div className="col-md-12 mb-5">
                 <div className="card p-0">
                 <table className="table table-hover">
                     <thead className="table-primary">

@@ -53,13 +53,15 @@ body, html {
 
 .sidebar{
   width: 200px;
+  min-width: 200px;
   min-height: 100vh;
   height: 100%;
   transition: width 0.3s;
 }
 
 .sidebar.collapsed{
-  width: 50px;
+  width: 40px;
+  min-width: 40px; 
 }
 
 .nav-link.active {
@@ -69,10 +71,27 @@ body, html {
 }
 
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dim background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px); /* Blur background */
+  z-index: 1000; /* Ensure it's on top */
+}
+
+
 
 @media (max-width: 767px) {
   .sidebar {
-    width: 60px; /* Ensures sidebar starts collapsed on small screens */
+    width: 40px; /* Ensures sidebar starts collapsed on small screens */
+    min-width: 40px; 
+
   }
 
   .sidebar .visible-text{

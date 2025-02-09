@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom";
 
-const AddNewTag = ({onAddTag}) => {
+const AddNewTag = ({onAddTag, onClose}) => {
 
 
     const [tagName, setTagName] = useState('');
@@ -22,13 +22,34 @@ const AddNewTag = ({onAddTag}) => {
     return (
 
         <>
-            <form onSubmit={tagSubmit}>
-                <input type="text" placeholder="Add a tag" onChange={(e) => setTagName(e.target.value)}/>
+            <div className="modal-overlay">
+            <div className="card shadow p-3 w-25">
+                <div className="card-body">
+                <h5 className="card-title text-center">Add New Tag</h5>
+                <form onSubmit={tagSubmit}>
+                    <input type="text" placeholder="Add a tag" onChange={(e) => setTagName(e.target.value)} className="form-control mt-4" />
 
-                <button>
-                    Submit
-                </button>
-            </form>
+                    <div className="d-flex justify-content-between mt-4">
+
+
+                    <button className="btn btn-sm btn-danger" onClick={onClose}>
+                        Cancel
+                    </button>
+
+
+                    <button className="btn btn-sm btn-primary">
+                        Submit
+                    </button>
+
+                    
+
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+            
+            
 
         </>
     )

@@ -64,7 +64,7 @@ const LeadDetails = () => {
           <hr />
 
           {/* Lead Information */}
-          <div className="row">
+          <div className="row mb-5">
           <div className="col-md-12">
             <div className="card mt-3">
               <div className="card-body">
@@ -96,7 +96,7 @@ const LeadDetails = () => {
                     </tr>
                     <tr>
                       <th>Active Tags</th>
-                      <td>{leadTags.map((tag) => <button key={tag} className="btn btn-sm btn-outline-primary me-2">{tag}</button>)}{leadTags.length <5 && <button className="btn btn-sm btn-outline-success" onClick={() => setShowTagForm((prev) => !prev)}>+ Add new Tag</button>}{showTagForm && <AddNewTag onAddTag={handleAddTag}/>}</td>
+                      <td>{leadTags.map((tag) => <button key={tag} className="btn btn-sm btn-outline-primary me-2">{tag}</button>)}{leadTags.length <5 && <button className="btn btn-sm btn-outline-success" onClick={() => setShowTagForm(true)}>+ Add new Tag</button>}{showTagForm && <AddNewTag onAddTag={handleAddTag} onClose={() => setShowTagForm(false)}/>}</td>
                     </tr>
                   </tbody>
                 </table>
