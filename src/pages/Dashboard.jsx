@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 import TrackerContext from "../contexts/TrackerContext";
@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const { sampleLeads:leads } = useContext(TrackerContext);
 
+  const [priorityLeads, setPriorityLeads] = useState([])
+
+  const [selectedPriority, setSelectedPriority] = useState('High')
+
   // Count leads by status
   const leadStatusCounts = leads.reduce((acc, curr) => {
     acc[curr.status] = (acc[curr.status] || 0) + 1;
@@ -14,8 +18,29 @@ const Dashboard = () => {
     return acc;
   }, {});
 
-  // High priority leads
-  const highPriorityLeads = leads.filter((lead) => lead.priority === "High");
+
+  useEffect(() => {
+    const highData = leads.filter((lead) => lead.priority === "High");
+    setPriorityLeads(highData);
+  }, [leads])
+
+  const priorityHandler = (e) => {
+    const {value} = e.target;
+
+    setSelectedPriority(value)
+
+    const filteredData = leads.filter((lead) => lead.priority === value);
+
+    setPriorityLeads(filteredData);
+
+  }
+
+  const priorityColors = {
+    High: "bg-danger",
+    Medium: "bg-warning",
+    Low: "bg-primary"
+  };
+  
 
   return (
     <>
@@ -101,29 +126,36 @@ const Dashboard = () => {
 
             {/* Quick Filters */}
             <div className="mt-4">
-              <h4>Quick Filters</h4>
+              <h4>Quick Filters: </h4>
               <div className="d-flex gap-2 flex-wrap">
-                {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
-                  <button key={status} className="btn btn-outline-primary">
-                    {status}
+                
+                  <button className={`btn ${selectedPriority === "High" ? "btn-danger": "btn-outline-danger"}`} value="High" onClick={priorityHandler}>
+                    High
                   </button>
-                ))}
+
+                  <button className={`btn ${selectedPriority === "Medium" ? "btn-warning": "btn-outline-warning"}`} value="Medium" onClick={priorityHandler}>
+                    Medium
+                  </button>
+
+                  <button className={`btn ${selectedPriority === "Low" ? "btn-primary": "btn-outline-primary"}`} value="Low" onClick={priorityHandler}>
+                    Low
+                  </button>
               </div>
             </div>
 
-            {/* High Priority Leads */}
+            {/* Priority Leads */}
             <div className="mt-4">
-              <h4>Top Priority Leads</h4>
+              <h4>{selectedPriority} Priority Leads</h4>
               <ul className="list-group">
-                {highPriorityLeads.length > 0 ? (
-                  highPriorityLeads.map((lead, index) => (
+                {priorityLeads.length > 0 ? (
+                  priorityLeads.map((lead, index) => (
                     <li key={index} className="list-group-item d-flex justify-content-between">
                       <span>{lead.name} ({lead.source})</span>
-                      <span className="badge bg-danger">High</span>
+                      <span className={`badge ${priorityColors[lead.priority]}`}>{lead.priority}</span>
                     </li>
                   ))
                 ) : (
-                  <li className="list-group-item text-muted">No high-priority leads</li>
+                  <li className="list-group-item text-muted">No leads available</li>
                 )}
               </ul>
             </div>
