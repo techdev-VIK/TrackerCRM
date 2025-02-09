@@ -14,6 +14,7 @@ export const sampleLeads = [
       { value: "high-value", label: "High Value" },
       { value: "follow-up", label: "Follow-up" }
     ],
+    budget: 200000,
     timeToClose: 14,
     priority: "High",
     createdAt: new Date("2024-02-04T10:00:00.000Z"),
@@ -29,6 +30,7 @@ export const sampleLeads = [
       { value: "urgent", label: "Urgent" },
       { value: "follow-up", label: "Follow-up" }
     ],
+    budget: 1000000,
     timeToClose: 10,
     priority: "High",
     createdAt: new Date("2024-02-02T12:00:00.000Z"),
@@ -43,6 +45,7 @@ export const sampleLeads = [
     tags: [
       { value: "interested", label: "Interested" }
     ],
+    budget: 8000000,
     timeToClose: 7,
     priority: "Medium",
     createdAt: new Date("2024-01-30T09:30:00.000Z"),
@@ -58,6 +61,7 @@ export const sampleLeads = [
       { value: "potential-client", label: "Potential Client" },
       { value: "negotiation", label: "Negotiation" }
     ],
+    budget: 51000,
     timeToClose: 21,
     priority: "High",
     createdAt: new Date("2024-01-28T15:15:00.000Z"),
@@ -73,6 +77,7 @@ export const sampleLeads = [
       { value: "follow-up", label: "Follow-up" },
       { value: "needs-more-info", label: "Needs More Info" }
     ],
+    budget: 63000,
     timeToClose: 30,
     priority: "Low",
     createdAt: new Date("2024-01-27T08:10:00.000Z"),
@@ -87,6 +92,7 @@ export const sampleLeads = [
     tags: [
       { value: "successful-deal", label: "Successful Deal" }
     ],
+    budget: 26000,
     timeToClose: 12,
     priority: "Medium",
     createdAt: new Date("2024-01-25T14:00:00.000Z"),
@@ -103,6 +109,7 @@ export const sampleLeads = [
       { value: "high-value", label: "High Value" },
       { value: "vip-client", label: "VIP Client" }
     ],
+    budget: 16000,
     timeToClose: 5,
     priority: "High",
     createdAt: new Date("2024-01-24T10:20:00.000Z"),

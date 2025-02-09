@@ -24,7 +24,10 @@ const AddLead = () => {
 
   const [priority, setPriority] = useState(leadValues?.priority || '');
 
-  const [timeToClose, setTimeToClose] = useState(leadValues?.timeToClose ||'');
+  const [budget, setBudget] = useState(leadValues?.budget || '')
+
+  const [timeToClose, setTimeToClose] = useState(leadValues?.timeToClose || '');
+
 
   const [tags, setTags] = useState([]);
 
@@ -94,7 +97,7 @@ const AddLead = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="tags" className="form-label">Tags</label>
+            <label htmlFor="tags" className="form-label">Tags:</label>
             <Select 
             options={tagOptions} 
             value={tags}
@@ -114,7 +117,7 @@ const AddLead = () => {
 
 
           <div className="mb-3">
-            <label htmlFor="leadStatus" className="form-label">Lead Status</label>
+            <label htmlFor="leadStatus" className="form-label">Lead Status:</label>
             <select id="leadStatus" value={leadStatus} className="form-select" onChange={(e) => setLeadStatus(e.target.value)} required>
                <option value="New">New</option>
                <option value="Contacted">Contacted</option>
@@ -125,7 +128,7 @@ const AddLead = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="priority" className="form-label">Priority</label>
+            <label htmlFor="priority" className="form-label">Priority:</label>
             <select id="priority" value={priority} className="form-select" onChange={(e) => setPriority(e.target.value)} required>
                <option value="High">High</option>
                <option value="Medium">Medium</option>
@@ -133,9 +136,17 @@ const AddLead = () => {
             </select>
           </div>
 
+
           <div className="mb-3">
-            <label htmlFor="timeToClose" className="form-label">Time To Close</label>
-            <input type="number" value={timeToClose} className="form-control" onChange={(e) => setTimeToClose(e.target.value)} required/>
+            <label htmlFor="budget" className="form-label">Budget:</label>
+            <input type="number" id="budget" value={budget} className="form-control" onChange={(e) => setBudget(e.target.value)} min={5000} required/>
+          </div>
+
+
+
+          <div className="mb-3">
+            <label htmlFor="timeToClose" className="form-label">Time To Close:</label>
+            <input type="number" id="timeToClose" value={timeToClose} className="form-control" onChange={(e) => setTimeToClose(e.target.value)} min={1} required/>
           </div>
             
             <div className="mb-3 text-center">

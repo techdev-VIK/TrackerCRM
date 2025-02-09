@@ -15,6 +15,7 @@ import AddSalesAgent from './pages/AddSalesAgent';
 import LeadList from './pages/LeadList';
 import SalesAgentList from './pages/SalesAgentList';
 import SalesAgentDetails from './pages/SalesAgentDetails';
+import SalesData from './pages/SalesData';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/salesAgents" element={<SalesAgentList />}/>
           <Route path="/salesAgents/details/:id" element={<SalesAgentDetails />}/>
           <Route path="/sales/addSaleAgent" element={<AddSalesAgent />}/>
+          <Route path="/sales" element={<SalesData />}/>
         </Routes>
         <Footer />
       </Router>
