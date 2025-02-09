@@ -10,10 +10,7 @@ export const sampleLeads = [
     source: "Website",
     salesAgent: "Laurie Jackson",
     status: "New",
-    tags: [
-      { value: "high-value", label: "High Value" },
-      { value: "follow-up", label: "Follow-up" }
-    ],
+    tags: ["High Value", "Follow-up"],
     budget: 200000,
     timeToClose: 14,
     priority: "High",
@@ -26,10 +23,7 @@ export const sampleLeads = [
     source: "Referral",
     salesAgent: "John Diaz",
     status: "Contacted",
-    tags: [
-      { value: "urgent", label: "Urgent" },
-      { value: "follow-up", label: "Follow-up" }
-    ],
+    tags: ["Urgent", "Follow-up"],
     budget: 1000000,
     timeToClose: 10,
     priority: "High",
@@ -42,9 +36,7 @@ export const sampleLeads = [
     source: "Cold Call",
     salesAgent: "Stark Charles",
     status: "Qualified",
-    tags: [
-      { value: "interested", label: "Interested" }
-    ],
+    tags: ["Interested"],
     budget: 8000000,
     timeToClose: 7,
     priority: "Medium",
@@ -57,10 +49,7 @@ export const sampleLeads = [
     source: "Advertisement",
     salesAgent: "Smith Dave",
     status: "Proposal Sent",
-    tags: [
-      { value: "potential-client", label: "Potential Client" },
-      { value: "negotiation", label: "Negotiation" }
-    ],
+    tags: ["Potential Client", "Negotiation"],
     budget: 51000,
     timeToClose: 21,
     priority: "High",
@@ -73,10 +62,7 @@ export const sampleLeads = [
     source: "Email",
     salesAgent: "Johnny Carlos",
     status: "New",
-    tags: [
-      { value: "follow-up", label: "Follow-up" },
-      { value: "needs-more-info", label: "Needs More Info" }
-    ],
+    tags: ["Follow-up", "Needs More Info"],
     budget: 63000,
     timeToClose: 30,
     priority: "Low",
@@ -89,9 +75,7 @@ export const sampleLeads = [
     source: "Referral",
     salesAgent: "Bruno Marz",
     status: "Closed",
-    tags: [
-      { value: "successful-deal", label: "Successful Deal" }
-    ],
+    tags: ["Successful Deal"],
     budget: 26000,
     timeToClose: 12,
     priority: "Medium",
@@ -105,14 +89,23 @@ export const sampleLeads = [
     source: "Other",
     salesAgent: "Sophia Campbell",
     status: "Contacted",
-    tags: [
-      { value: "high-value", label: "High Value" },
-      { value: "vip-client", label: "VIP Client" }
-    ],
+    tags: ["High Value", "VIP Client"],
     budget: 16000,
     timeToClose: 5,
     priority: "High",
     createdAt: new Date("2024-01-24T10:20:00.000Z"),
     updatedAt: new Date("2024-02-01T12:30:00.000Z"),
   }
+];
+
+export const tagOptions = [
+  { value: "High Value", label: "High Value" },
+  { value: "Follow-up", label: "Follow-up" },
+  { value: "Urgent", label: "Urgent" },
+  { value: "Interested", label: "Interested" },
+  { value: "Potential Client", label: "Potential Client" },
+  { value: "Negotiation", label: "Negotiation" },
+  { value: "Needs More Info", label: "Needs More Info" },
+  { value: "Successful Deal", label: "Successful Deal" },
+  { value: "VIP Client", label: "VIP Client" }
 ];

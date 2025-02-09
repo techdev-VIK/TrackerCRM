@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { Link, useParams } from "react-router-dom";
 import TrackerContext from "../contexts/TrackerContext";
+import AddNewTag from "../components/AddNewTag";
 
 
 
@@ -9,6 +10,7 @@ const LeadDetails = () => {
 
   const { sampleLeads:leads } = useContext(TrackerContext);
 
+  const [showTagForm, setShowTagForm] = useState(false);
 
   const {id} = useParams();
 
@@ -33,8 +35,16 @@ const LeadDetails = () => {
 
   const leadDetails = leads.find((lead) => lead._id === id)
 
-  // console.log(leadDetails);
+  console.log(leadDetails);
 
+
+  const [leadTags, setLeadTags] = useState(leadDetails.tags)
+
+  const handleAddTag = (newTag) => {
+
+    setLeadTags((prevTags) => [...prevTags, newTag]);
+    setShowTagForm(false);
+  }
 
   return (
 
@@ -86,7 +96,7 @@ const LeadDetails = () => {
                     </tr>
                     <tr>
                       <th>Active Tags</th>
-                      <td>{leadDetails.tags.map((tag) => <button key={tag.value} className="btn btn-sm btn-outline-primary me-2">{tag.label}</button>)}</td>
+                      <td>{leadTags.map((tag) => <button key={tag} className="btn btn-sm btn-outline-primary me-2">{tag}</button>)}{leadTags.length <5 && <button className="btn btn-sm btn-outline-success" onClick={() => setShowTagForm((prev) => !prev)}>+ Add new Tag</button>}{showTagForm && <AddNewTag onAddTag={handleAddTag}/>}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -125,10 +135,9 @@ const LeadDetails = () => {
                   </li>
                 ))}
               </ul>
-              
             </div>
           </div>
-            </div>
+          </div>
           </div>
           </div>
           </div>

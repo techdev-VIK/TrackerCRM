@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import Select from 'react-select';
+import TrackerContext from "../contexts/TrackerContext";
 
 
 const AddLead = () => {
@@ -31,18 +32,8 @@ const AddLead = () => {
 
   const [tags, setTags] = useState([]);
 
-   const tagOptions = [
-    { value: "High Value", label: "High Value" },
-    { value: "Follow-up", label: "Follow-up" },
-    { value: "Urgent", label: "Urgent" },
-    { value: "Interested", label: "Interested" },
-    { value: "Potential Client", label: "Potential Client" },
-    { value: "Negotiation", label: "Negotiation" },
-    { value: "Needs More Info", label: "Needs More Info" },
-    { value: "Successful Deal", label: "Successful Deal" },
-    { value: "VIP Client", label: "VIP Client" }
-  ];
-  
+   
+  const { tagOptions } = useContext(TrackerContext);
 
   
   const multipleTagHandler = (selectedTag) => {
