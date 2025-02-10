@@ -86,7 +86,7 @@ const SalesData = () => {
 
                     return(
                             <div className="col-md-4 mt-2" key={lead._id}>
-                            <div className="card p-2">
+                            <div className="card p-3">
                             <div className="card-title">
                                 <h4>{beforeMatch}{matchText}{afterMatch}</h4>
                                 

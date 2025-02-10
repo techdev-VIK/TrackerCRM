@@ -86,7 +86,7 @@ const Dashboard = () => {
           <main className="mb-5">
             <div className="row">
               <div className="col-md-4 col-sm-6 mt-2">
-                <div className="card p-1">
+                <div className="card p-3">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
                       <h4>Monthly Forecast</h4>
@@ -103,7 +103,7 @@ const Dashboard = () => {
               </div>
 
               <div className="col-md-4 col-sm-6 mt-2">
-                <div className="card p-1">
+                <div className="card p-3">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
                       <h4>Weekly Forecast</h4>
@@ -118,7 +118,7 @@ const Dashboard = () => {
               </div>
 
               <div className="col-md-4 col-sm-6 mt-2">
-                <div className="card p-1">
+                <div className="card p-3">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
                       <h4>Pipeline Status</h4>
