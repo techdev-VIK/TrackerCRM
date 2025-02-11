@@ -9,17 +9,16 @@ const AddLead = () => {
 
   const location = useLocation();
 
+  const { tagOptions, agents } = useContext(TrackerContext);
+
+
   const leadValues = location.state?.leadValues;
-
-  const salesAgents = ["Agent1", "Agent2", "Agent3"];
-
-  const [selectedOption] = useState(salesAgents);
 
   const [leadName, setLeadName] = useState(leadValues?.name || '');
 
   const [leadSource, setLeadSource] = useState(leadValues?.source || '');
 
-  const [salesAgent, setSalesAgent] = useState(leadValues?.salesAgent || '');
+  const [salesAgent, setSalesAgent] = useState('');
 
   const [leadStatus, setLeadStatus] = useState(leadValues?.status || '');
 
@@ -32,8 +31,6 @@ const AddLead = () => {
 
   const [tags, setTags] = useState([]);
 
-   
-  const { tagOptions } = useContext(TrackerContext);
 
   
   const multipleTagHandler = (selectedTag) => {
@@ -86,7 +83,7 @@ const AddLead = () => {
             </select>
           </div>
 
-          <div className="mb-3">
+          {!leadValues && <div className="mb-3">
             <label htmlFor="tags" className="form-label">Tags:</label>
             <Select 
             options={tagOptions} 
@@ -94,16 +91,17 @@ const AddLead = () => {
             onChange={(selectedTag) => multipleTagHandler(selectedTag)}
             isMulti={true}
             />
-          </div>
+          </div>}
 
-          <div className="mb-3">
+          {!leadValues && <div className="mb-3">
             <label htmlFor="salesAgent" className="form-label">Sales Agent:</label>
             <select id="salesAgent" className="form-select" value={salesAgent}  onChange={(e) => setSalesAgent(e.target.value)} required>
-              {selectedOption.map((agent, index) => (
-                <option key={index} value={agent}>{agent}</option>
+              <option value="" disabled>-- Select Agent --</option>
+              {agents.map((agent) => (
+                <option key={agent._id} value={agent.name}>{agent.name}</option>
               ))}
             </select>
-          </div>
+          </div>}
 
 
           <div className="mb-3">

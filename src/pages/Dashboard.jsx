@@ -64,8 +64,8 @@ const Dashboard = () => {
 
   const priorityColors = {
     High: "bg-danger",
-    Medium: "bg-warning",
-    Low: "bg-primary"
+    Medium: "bg-info",
+    Low: "bg-secondary"
   };
   
 
@@ -160,11 +160,11 @@ const Dashboard = () => {
                     High
                   </button>
 
-                  <button className={`btn ${selectedPriority === "Medium" ? "btn-warning": "btn-outline-warning"}`} value="Medium" onClick={priorityHandler}>
+                  <button className={`btn ${selectedPriority === "Medium" ? "btn-info text-light": "btn-outline-info"}`} value="Medium" onClick={priorityHandler}>
                     Medium
                   </button>
 
-                  <button className={`btn ${selectedPriority === "Low" ? "btn-primary": "btn-outline-primary"}`} value="Low" onClick={priorityHandler}>
+                  <button className={`btn ${selectedPriority === "Low" ? "btn-secondary": "btn-outline-secondary"}`} value="Low" onClick={priorityHandler}>
                     Low
                   </button>
               </div>

@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useParams } from "react-router-dom";
 
 const AddNewTag = ({onAddTag, onClose}) => {
 
@@ -40,8 +39,6 @@ const AddNewTag = ({onAddTag, onClose}) => {
                     <button className="btn btn-sm btn-primary">
                         Submit
                     </button>
-
-                    
 
                     </div>
                 </form>

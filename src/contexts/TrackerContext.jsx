@@ -13,9 +13,12 @@ export const TrackerProvider = ({children}) => {
 
     const {data: agents, loading: agentsLoading, error: agentsError} = useAxios(`http://localhost:3000/allAgents`)
 
+    const {data: tags} = useAxios(`http://localhost:3000/allTags`)
+
+    const tagOptions = tags.map((tag) => ({value: tag.name, label: tag.name}));
 
     return(
-        <TrackerContext.Provider value={{leads, agents}}>
+        <TrackerContext.Provider value={{leads, agents, tagOptions}}>
             {children}
         </TrackerContext.Provider>
     )
@@ -23,16 +26,3 @@ export const TrackerProvider = ({children}) => {
 
 
 export default TrackerContext;
-
-
-export const tagOptions = [
-  { value: "High Value", label: "High Value" },
-  { value: "Follow-up", label: "Follow-up" },
-  { value: "Urgent", label: "Urgent" },
-  { value: "Interested", label: "Interested" },
-  { value: "Potential Client", label: "Potential Client" },
-  { value: "Negotiation", label: "Negotiation" },
-  { value: "Needs More Info", label: "Needs More Info" },
-  { value: "Successful Deal", label: "Successful Deal" },
-  { value: "VIP Client", label: "VIP Client" }
-];

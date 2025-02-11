@@ -3,10 +3,13 @@ import Sidebar from "../components/Sidebar";
 import { Link, useParams } from "react-router-dom";
 import TrackerContext from "../contexts/TrackerContext";
 import AddNewTag from "../components/AddNewTag";
+import axios from "axios";
 
 
 
 const LeadDetails = () => {
+
+  const backendUrl = "http://localhost:3000";
 
   const { leads } = useContext(TrackerContext);
 
@@ -35,15 +38,40 @@ const LeadDetails = () => {
 
   const leadDetails = leads.find((lead) => lead._id === id)
 
-  console.log(leadDetails);
+  // console.log(leadDetails);
 
 
   const [leadTags, setLeadTags] = useState(leadDetails.tags)
 
-  const handleAddTag = (newTag) => {
+  const handleAddTag = async (newTag) => {
 
-    setLeadTags((prevTags) => [...prevTags, newTag]);
-    setShowTagForm(false);
+    try {
+       const response = await axios.put(`${backendUrl}/lead/${leadDetails._id}/tag/addNew`, {
+        tag: newTag
+       })
+
+       if(response.status === 200){
+        setLeadTags((prevTags) => [...prevTags, newTag]);
+        setShowTagForm(false);
+       }else{
+        console.error("Failed to add tag.");
+       }
+
+    } catch (error) {
+      console.error(error);
+    }
+    
+  }
+
+
+  const salesAgentEditHandler = () => {
+
+      try {
+        
+      } catch (error) {
+        
+      }
+
   }
 
   return (
@@ -76,7 +104,7 @@ const LeadDetails = () => {
                     </tr>
                     <tr>
                       <th>Sales Agent</th>
-                      <td>{leadDetails.salesAgent.name}</td>
+                      <td>{leadDetails.salesAgent.name} <span className="bi bi-pencil-square" onClick={salesAgentEditHandler}></span></td>
                     </tr>
                     <tr>
                       <th>Lead Source</th>
