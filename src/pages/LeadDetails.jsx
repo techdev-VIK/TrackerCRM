@@ -8,7 +8,7 @@ import AddNewTag from "../components/AddNewTag";
 
 const LeadDetails = () => {
 
-  const { sampleLeads:leads } = useContext(TrackerContext);
+  const { leads } = useContext(TrackerContext);
 
   const [showTagForm, setShowTagForm] = useState(false);
 
@@ -76,7 +76,7 @@ const LeadDetails = () => {
                     </tr>
                     <tr>
                       <th>Sales Agent</th>
-                      <td>{leadDetails.salesAgent}</td>
+                      <td>{leadDetails.salesAgent.name}</td>
                     </tr>
                     <tr>
                       <th>Lead Source</th>

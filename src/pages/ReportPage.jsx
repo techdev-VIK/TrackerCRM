@@ -11,7 +11,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearS
 
 
 const ReportPage = () => {
-  const { sampleLeads:leads } = useContext(TrackerContext);
+  const { leads } = useContext(TrackerContext);
 
   
   const getTotalLeads = () => {
@@ -31,7 +31,7 @@ const ReportPage = () => {
 
   const getLeadsBySalesAgent = () => {
     const salesAgents = leads.reduce((acc, lead) => {
-      const agent = lead.salesAgent;
+      const agent = lead.salesAgent.name;
       if (!acc[agent]) {
         acc[agent] = 0;
       }

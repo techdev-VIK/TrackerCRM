@@ -5,7 +5,10 @@ import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const { sampleLeads:leads } = useContext(TrackerContext);
+  const { leads } = useContext(TrackerContext);
+
+//   console.log("Leads from context:", leads);
+
 
   const [priorityLeads, setPriorityLeads] = useState([])
 

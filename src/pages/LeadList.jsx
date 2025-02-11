@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 
 const LeadList = () => {
 
-    const { sampleLeads:leads } = useContext(TrackerContext);
+    const { leads } = useContext(TrackerContext);
+
+//   console.log("Leads from context:", leads);
+
 
     const [searchLead, setSearchLead] = useState('')
 
@@ -115,7 +118,7 @@ const LeadList = () => {
                             <td>{lead.status}</td>
                             <td>{lead.priority}</td>
                             <td>{lead.timeToClose}</td>
-                            <td>{lead.salesAgent}</td>
+                            <td>{lead.salesAgent.name}</td>
                             <td><Link className="btn btn-sm btn-success" to={`/lead/details/${lead._id}`}>Details</Link></td>
                         </tr>
                         )

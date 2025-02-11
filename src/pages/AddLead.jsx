@@ -58,7 +58,6 @@ const AddLead = () => {
       tags: tags
     }
 
-
   }
 
   return (

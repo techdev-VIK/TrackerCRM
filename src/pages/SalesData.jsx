@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const SalesData = () => {
 
-    const { sampleLeads:leads } = useContext(TrackerContext);
+    const { leads } = useContext(TrackerContext);
 
 
     const [searchLead, setSearchLead] = useState('')
@@ -96,7 +96,7 @@ const SalesData = () => {
                                 <div className="mb-3">Time To Close: <span className="text-danger">{lead.timeToClose}</span></div>
                                 <div >
                                 Sales Agent   
-                                <span className="ms-2 text-primary">{lead.salesAgent}</span> 
+                                <span className="ms-2 text-primary">{lead.salesAgent.name}</span> 
                                 </div>
                             </div>
                             </div>

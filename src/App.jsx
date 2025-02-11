@@ -5,12 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import HomePage from './pages/HomePage'
-import Footer from "./components/Footer";
 import LeadDetails from "./pages/LeadDetails";
 import ReportPage from "./pages/ReportPage";
 import AddLead from './pages/AddLead';
 import Dashboard from './pages/Dashboard';
-import TrackerContext, { sampleLeads, tagOptions } from './contexts/TrackerContext';
+import { TrackerProvider } from './contexts/TrackerContext';
 import AddSalesAgent from './pages/AddSalesAgent';
 import LeadList from './pages/LeadList';
 import SalesAgentList from './pages/SalesAgentList';
@@ -21,7 +20,7 @@ function App() {
 
   return (
     <>
-    <TrackerContext.Provider value={{sampleLeads, tagOptions}}>
+    <TrackerProvider>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -36,7 +35,7 @@ function App() {
           <Route path="/sales" element={<SalesData />}/>
         </Routes>
       </Router>
-      </TrackerContext.Provider>
+      </TrackerProvider>
     </>
   )
 }
