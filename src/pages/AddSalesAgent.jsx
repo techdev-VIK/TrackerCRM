@@ -1,39 +1,42 @@
 import { useEffect, useState } from "react"
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 const AddSalesAgent = () => {
 
     const location = useLocation();
 
+    const backendUrl = "http://localhost:3000";
+
     const agentValues = location.state?.agentValues;
 
     const [name, setName] = useState(agentValues?.name || '');
 
     const [email, setEmail] = useState(agentValues?.email || '');
-
-
-
-    // useEffect(() => {
-    //     if(agentValues){
-    //         setName(agentValues.name);
-    //         setEmail(agentValues.email);
-    //     }else{
-    //         setName('');
-    //         setEmail('');
-    //     }
-    // }, [agentValues]);
     
 
 
-    const formHandler = (e) => {
+    const formHandler = async (e) => {
         e.preventDefault();
 
         const agentData = {
             name,
             email
         }
+
+        try {
+            const response = await axios.post(`${backendUrl}/agent`, agentData);
+
+            if(response.status === 200){
+                setName('');
+                setEmail('')
+            }
+        } catch (error) {
+            console.error(error)
+        }
+
     }
 
 
