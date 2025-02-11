@@ -48,7 +48,7 @@ const LeadList = () => {
 
                 <hr />
 
-            <div className="row mt-3 mx-3">
+            <div className="row mt-3 mx-3 mb-5">
 
             <div className="col-md-12 d-flex justify-content-between mb-3">
 

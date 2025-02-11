@@ -4,25 +4,11 @@ import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
 
 
-export const agents = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-    { id: 3, name: 'Michael Brown', email: 'michael.brown@example.com' },
-    { id: 4, name: 'Emily Davis', email: 'emily.davis@example.com' },
-    { id: 5, name: 'David Wilson', email: 'david.wilson@example.com' },
-    { id: 6, name: 'Olivia Johnson', email: 'olivia.johnson@example.com' },
-    { id: 7, name: 'Chris Martin', email: 'chris.martin@example.com' },
-    { id: 8, name: 'Sophia Lee', email: 'sophia.lee@example.com' },
-    { id: 9, name: 'Daniel Clark', email: 'daniel.clark@example.com' },
-    { id: 10, name: 'Ava Walker', email: 'ava.walker@example.com' },
-    { id: 11, name: 'James Hall', email: 'james.hall@example.com' },
-    { id: 12, name: 'Isabella Young', email: 'isabella.young@example.com' }
-  ];
-
 
 const SalesAgentList = () => {
 
-    
+    const { agents } = useContext(TrackerContext);
+
     const [searchAgent, setAgentSearch] = useState('');
 
 
@@ -84,11 +70,11 @@ const SalesAgentList = () => {
                         const afterMatch = name.substring(index + searchAgent.length);
 
                     return(
-                            <tr key={agent.id}>
+                            <tr key={agent._id}>
                             <td>{beforeMatch}<span className="bg-warning">{matchText}</span>{afterMatch}</td>
                             <td>{agent.email}</td>
                             <td>
-                            <Link to={`/salesAgents/details/${agent.id}`} className="btn btn-sm btn-success">Details</Link>
+                            <Link to={`/salesAgents/details/${agent._id}`} className="btn btn-sm btn-success">Details</Link>
                             </td>
                         </tr>
                     )

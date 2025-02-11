@@ -9,7 +9,7 @@ const HomePage = () => {
     
     <>
     <Header />
-    <main className="main-content">
+    <main className="main-content mb-5">
       <section className="my-3 container text-center">
       <h2 className="display-3 fw-bold py-5">Track every move, drive every sale. Simplify your workflow with <span className="text-primary">Tracker CRM</span></h2>
       <p className="mx-3 text-center fs-5 fw-light">From lead management to customer relationships, stay ahead with real-time insights and seamless automation. Your business, always on track.</p>

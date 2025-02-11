@@ -5,7 +5,7 @@ import TrackerContext from "../contexts/TrackerContext";
 import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
 
-// Register Chart.js components
+
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 

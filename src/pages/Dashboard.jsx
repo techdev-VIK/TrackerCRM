@@ -37,12 +37,12 @@ const Dashboard = () => {
   }, 0).toLocaleString("en-US");
 
 
-  const weeklyForecast = leads.reduce((acc, curr) => {
-    if(curr.timeToClose <= 7){
-        acc = curr.budget + acc
-    }
-    return acc
-  }, 0).toLocaleString("en-US");
+//   const activeAgents = leads.reduce((acc, curr) => {
+//     if(curr.timeToClose > 30){
+//         acc = curr.budget + acc
+//     }
+//     return acc
+//   }, 0).toLocaleString("en-US");
 
 
 
@@ -109,13 +109,13 @@ const Dashboard = () => {
                 <div className="card p-3">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
-                      <h4>Weekly Forecast</h4>
+                      <h4>Agent Status</h4>
                       <span className="bi bi-people me-2"></span>
                     </div>
                   </div>
                   <div className="card-body">
-                    <h5>${weeklyForecast}</h5>
-                    <small>Projected for this week</small>
+                    <h5>${}</h5>
+                    <small>Active agents · X Agents are active</small>
                   </div>
                 </div>
               </div>

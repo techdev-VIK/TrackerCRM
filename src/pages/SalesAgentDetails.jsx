@@ -1,16 +1,18 @@
+import { useContext } from "react";
 import Sidebar from "../components/Sidebar";
 import { Link, useParams } from "react-router-dom";
-import { agents } from "./SalesAgentList";
+import TrackerContext from "../contexts/TrackerContext";
 
 
 const SalesAgentDetails = () => {
 
+  const { agents } = useContext(TrackerContext);
 
   const {id} = useParams();
 
   // console.log(id);
 
-  const agentDetails = agents.find((agent) => agent.id == id)
+  const agentDetails = agents.find((agent) => agent._id == id)
 
   // console.log(agentDetails);
 

@@ -1,5 +1,4 @@
 
-
 import { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar"
 import TrackerContext from "../contexts/TrackerContext";
@@ -87,16 +86,16 @@ const SalesData = () => {
                     return(
                             <div className="col-md-4 mt-2" key={lead._id}>
                             <div className="card p-3">
-                            <div className="card-title">
+                            <div className="card-title text-primary">
                                 <h4>{beforeMatch}{matchText}{afterMatch}</h4>
                                 
                             </div>
                             <div className="card-body p-2">
                                 <h5 className="mb-3">Budget: <span className="text-success">$ {lead.budget}</span></h5>
-                                <div className="mb-3">Time To Close: <span className="text-danger">{lead.timeToClose}</span></div>
+                                <div className="mb-3">Time To Close: <span >{lead.timeToClose}</span></div>
                                 <div >
-                                Sales Agent   
-                                <span className="ms-2 text-primary">{lead.salesAgent.name}</span> 
+                                Sales Agent:   
+                                <span className="ms-2">{lead.salesAgent.name}</span> 
                                 </div>
                             </div>
                             </div>
