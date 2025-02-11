@@ -27,7 +27,14 @@ const AddSalesAgent = () => {
         }
 
         try {
-            const response = await axios.post(`${backendUrl}/agent`, agentData);
+            let response;
+
+            if(agentValues){
+                response = await axios.post(`${backendUrl}/agent/update/${agentValues._id}`, agentData);
+            }else{
+                response = await axios.post(`${backendUrl}/agent`, agentData);
+            }
+            
 
             if(response.status === 200){
                 setName('');
