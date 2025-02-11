@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import TrackerContext from "../contexts/TrackerContext";
 import AddNewTag from "../components/AddNewTag";
 import axios from "axios";
+import ReassignAgent from "../components/ReassignAgent";
 
 
 
@@ -14,6 +15,8 @@ const LeadDetails = () => {
   const { leads } = useContext(TrackerContext);
 
   const [showTagForm, setShowTagForm] = useState(false);
+
+  const [agentReassign, setAgentReassign] = useState(false);
 
   const {id} = useParams();
 
@@ -64,15 +67,24 @@ const LeadDetails = () => {
   }
 
 
-  const salesAgentEditHandler = () => {
-
-      try {
-        
-      } catch (error) {
-        
+  const salesAgentEditHandler = async (newAgentId) => {
+    try {
+      const response = await axios.post(`${backendUrl}/lead/edit/${leadDetails._id}/agent/reassign`, {
+        salesAgent: newAgentId,   // Sending agent ID
+      });
+  
+      if (response.status === 200) {
+        alert("Agent reassigned successfully!");
+        setAgentReassign(false);  // Close the modal
+        window.location.reload(); // Refresh to see updated agent
+      } else {
+        console.error("Failed to reassign agent.");
       }
-
-  }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
   return (
 
@@ -104,7 +116,7 @@ const LeadDetails = () => {
                     </tr>
                     <tr>
                       <th>Sales Agent</th>
-                      <td>{leadDetails.salesAgent.name} <span className="bi bi-pencil-square" onClick={salesAgentEditHandler}></span></td>
+                      <td>{leadDetails.salesAgent.name} <span className="bi bi-pencil-square" onClick={() => setAgentReassign(true)}></span>{agentReassign && <ReassignAgent onAddAgent={salesAgentEditHandler} onClose={() => setAgentReassign(false)} leadId = {leadDetails._id}/>}</td>
                     </tr>
                     <tr>
                       <th>Lead Source</th>
