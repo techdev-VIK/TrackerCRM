@@ -3,11 +3,14 @@ import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import Select from 'react-select';
 import TrackerContext from "../contexts/TrackerContext";
+import axios from "axios";
 
 
 const AddLead = () => {
 
   const location = useLocation();
+
+  const backendUrl = "http://localhost:3000";
 
   const { tagOptions, agents } = useContext(TrackerContext);
 
@@ -16,13 +19,13 @@ const AddLead = () => {
 
   const [leadName, setLeadName] = useState(leadValues?.name || '');
 
-  const [leadSource, setLeadSource] = useState(leadValues?.source || '');
+  const [leadSource, setLeadSource] = useState(leadValues?.source || 'Website');
 
   const [salesAgent, setSalesAgent] = useState('');
 
-  const [leadStatus, setLeadStatus] = useState(leadValues?.status || '');
+  const [leadStatus, setLeadStatus] = useState(leadValues?.status || 'New');
 
-  const [priority, setPriority] = useState(leadValues?.priority || '');
+  const [priority, setPriority] = useState(leadValues?.priority || 'Medium');
 
   const [budget, setBudget] = useState(leadValues?.budget || '')
 
@@ -41,7 +44,7 @@ const AddLead = () => {
 
 
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
 
 
@@ -51,8 +54,27 @@ const AddLead = () => {
       salesAgent: salesAgent,
       status: leadStatus,
       priority: priority,
-      timeToClose: timeToClose,
-      tags: tags
+      timeToClose: Number(timeToClose),
+      budget: Number(budget),
+      tags: tags.map(tag => tag.value)
+    }
+
+
+    try {
+      const response = await axios.post(`${backendUrl}/leads`, leadData)
+
+      if(response.status === 200){
+        setLeadName('');
+        setLeadSource('Website');
+        setSalesAgent('');
+        setLeadStatus('New');    
+        setPriority('Medium'); 
+        setBudget('');
+        setTimeToClose('');
+        setTags([]);
+      }
+    } catch (error) {
+      console.error(error);
     }
 
   }
@@ -98,7 +120,7 @@ const AddLead = () => {
             <select id="salesAgent" className="form-select" value={salesAgent}  onChange={(e) => setSalesAgent(e.target.value)} required>
               <option value="" disabled>-- Select Agent --</option>
               {agents.map((agent) => (
-                <option key={agent._id} value={agent.name}>{agent.name}</option>
+                <option key={agent._id} value={agent._id}>{agent.name}</option>
               ))}
             </select>
           </div>}
