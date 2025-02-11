@@ -5,7 +5,7 @@ import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const { leads } = useContext(TrackerContext);
+  const { leads, agents } = useContext(TrackerContext);
 
 //   console.log("Leads from context:", leads);
 
@@ -37,12 +37,12 @@ const Dashboard = () => {
   }, 0).toLocaleString("en-US");
 
 
-//   const activeAgents = leads.reduce((acc, curr) => {
-//     if(curr.timeToClose > 30){
-//         acc = curr.budget + acc
-//     }
-//     return acc
-//   }, 0).toLocaleString("en-US");
+  const dealsClosedMoney = leads.reduce((acc, curr) => {
+    if(curr.status === "Closed"){
+        acc = curr.budget + acc
+    }
+    return acc
+  }, 0).toLocaleString("en-US");
 
 
 
@@ -109,13 +109,13 @@ const Dashboard = () => {
                 <div className="card p-3">
                   <div className="card-title">
                     <div className="d-flex justify-content-between">
-                      <h4>Agent Status</h4>
+                      <h4>Deals Closed</h4>
                       <span className="bi bi-people me-2"></span>
                     </div>
                   </div>
                   <div className="card-body">
-                    <h5>${}</h5>
-                    <small>Active agents · X Agents are active</small>
+                    <h5>${dealsClosedMoney}</h5>
+                    <small>Active agents · {agents.length} on active deals</small>
                   </div>
                 </div>
               </div>
@@ -130,7 +130,7 @@ const Dashboard = () => {
                   </div>
                   <div className="card-body">
                     <h5>${totalInPipeline}</h5>
-                    <small>Active leads · {leads.length} Leads in Pipeline</small>
+                    <small>Active leads · {leads.length} leads in pipeline</small>
                   </div>
                 </div>
               </div>

@@ -5,12 +5,13 @@ import TrackerContext from "../contexts/TrackerContext";
 import AddNewTag from "../components/AddNewTag";
 import axios from "axios";
 import ReassignAgent from "../components/ReassignAgent";
+import useAxios from "../hooks/useAxios";
 
 
 
 const LeadDetails = () => {
 
-  const backendUrl = "http://localhost:3000";
+  const backendUrl = "https://tracker-backend-alpha.vercel.app";
 
   const navigate = useNavigate();
 
@@ -22,20 +23,16 @@ const LeadDetails = () => {
 
   const {id} = useParams();
 
-  const [comments, setComments] = useState([
-    { author: "John Doe", date: "2025-01-31 10:00 AM", text: "Reached out, waiting..." },
-  ]);
 
   const [newComment, setNewComment] = useState("");
 
 
   const leadDetails = leads.find((lead) => lead._id === id)
 
-  console.log(leadDetails);
+  // console.log(leadDetails);
 
 
   const [leadTags, setLeadTags] = useState(leadDetails.tags)
-
 
 
   const handleCommentSubmit = async () => {
@@ -107,6 +104,17 @@ const LeadDetails = () => {
       console.error(error);
     }
   };
+
+
+  const {data: comments, loading, error} = useAxios(`${backendUrl}/lead/${leadDetails._id}/readComments`)
+
+  if (loading) {
+    return <p>Loading comments...</p>;
+  }
+  
+  if (error) {
+    return <p>Error loading comments: {error.message}</p>;
+  }
   
 
   return (
@@ -197,10 +205,10 @@ const LeadDetails = () => {
               </div>
 
               <ul className="list-group mt-3">
-                {comments.slice().reverse().map((comment, index) => (
+                {comments && comments.slice().reverse().map((comment, index) => (
                   <li key={index} className="list-group-item">
-                    <p><strong>{comment.author}</strong> - <small>{comment.date}</small></p>
-                    <p>{comment.text}</p>
+                    <p><strong>{comment.author.name}</strong> - <small>{new Date(comment.createdAt).toLocaleString('en-US')}</small></p>
+                    <p>{comment.commentText}</p>
                   </li>
                 ))}
               </ul>
