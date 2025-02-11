@@ -40,7 +40,7 @@ const LeadList = () => {
             <div className="py-2 mx-3 flex-grow-1">
                
             <div className="d-flex justify-content-between">
-            <h2 className="mb-0">Lead Overview</h2>
+            <h2 className="mb-0">Lead Overview ({leads.length})</h2>
             <Link to="/lead/addLead" className="btn btn-primary">
                 + Add Lead
             </Link>

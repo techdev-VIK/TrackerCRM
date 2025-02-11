@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TrackerContext from "../contexts/TrackerContext";
 import AddNewTag from "../components/AddNewTag";
 import axios from "axios";
@@ -11,6 +11,8 @@ import ReassignAgent from "../components/ReassignAgent";
 const LeadDetails = () => {
 
   const backendUrl = "http://localhost:3000";
+
+  const navigate = useNavigate();
 
   const { leads } = useContext(TrackerContext);
 
@@ -67,6 +69,23 @@ const LeadDetails = () => {
   }
 
 
+
+  const deleteLeadHandler = async() => {
+
+      try {
+        const response = await axios.delete(`${backendUrl}/delete/lead/${leadDetails._id}`)
+
+        if (response.status === 200) {
+          navigate('/lead')
+        } else {
+          console.error("Failed to delete.");
+        }
+      } catch (error) {
+        console.error("Failed to delete.", error);
+      }
+  }
+
+
   const salesAgentEditHandler = async (newAgentId) => {
     try {
       const response = await axios.post(`${backendUrl}/lead/edit/${leadDetails._id}/agent/reassign`, {
@@ -74,9 +93,8 @@ const LeadDetails = () => {
       });
   
       if (response.status === 200) {
-        alert("Agent reassigned successfully!");
-        setAgentReassign(false);  // Close the modal
-        window.location.reload(); // Refresh to see updated agent
+        setAgentReassign(false);
+        navigate('/lead')
       } else {
         console.error("Failed to reassign agent.");
       }
@@ -116,7 +134,7 @@ const LeadDetails = () => {
                     </tr>
                     <tr>
                       <th>Sales Agent</th>
-                      <td>{leadDetails.salesAgent.name} <span className="bi bi-pencil-square" onClick={() => setAgentReassign(true)}></span>{agentReassign && <ReassignAgent onAddAgent={salesAgentEditHandler} onClose={() => setAgentReassign(false)} leadId = {leadDetails._id}/>}</td>
+                      <td>{leadDetails.salesAgent.name} <span className="bi bi-pencil-square text-primary ms-3" onClick={() => setAgentReassign(true)}></span>{agentReassign && <ReassignAgent onAddAgent={salesAgentEditHandler} onClose={() => setAgentReassign(false)} leadId = {leadDetails._id}/>}</td>
                     </tr>
                     <tr>
                       <th>Lead Source</th>
@@ -140,7 +158,13 @@ const LeadDetails = () => {
                     </tr>
                   </tbody>
                 </table>
+                
+                <div className="d-flex justify-content-between">
                 <Link to="/lead/addLead" className="btn btn-primary" state={{leadValues: leadDetails}}>Edit Lead Details</Link>
+
+                <button className="btn btn-danger" onClick={deleteLeadHandler}>Delete Lead</button>
+                </div>
+                
               </div>
             </div>
           </div>
