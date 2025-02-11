@@ -51,17 +51,26 @@ const AddLead = () => {
     const leadData = {
       name: leadName,
       source: leadSource,
-      salesAgent: salesAgent,
       status: leadStatus,
       priority: priority,
       timeToClose: Number(timeToClose),
       budget: Number(budget),
-      tags: tags.map(tag => tag.value)
     }
 
+    if (!leadValues) {
+      leadData.tags = tags.map(tag => tag.value);
+      leadData.salesAgent = salesAgent;
+    }
 
     try {
-      const response = await axios.post(`${backendUrl}/leads`, leadData)
+      
+      let response;
+
+      if(leadValues){
+        response = await axios.post(`${backendUrl}/lead/edit/${leadValues._id}`, leadData)
+      }else{
+        response = await axios.post(`${backendUrl}/leads`, leadData)
+      }
 
       if(response.status === 200){
         setLeadName('');
