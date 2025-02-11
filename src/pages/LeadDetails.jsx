@@ -29,24 +29,29 @@ const LeadDetails = () => {
   const [newComment, setNewComment] = useState("");
 
 
-
-  const handleCommentSubmit = () => {
-    if (newComment.trim() === "") return;
-    const newEntry = {
-      author: "You",
-      date: new Date().toLocaleString(),
-      text: newComment,
-    };
-    setComments([...comments, newEntry]);
-    setNewComment("");
-  };
-
   const leadDetails = leads.find((lead) => lead._id === id)
 
-  // console.log(leadDetails);
+  console.log(leadDetails);
 
 
   const [leadTags, setLeadTags] = useState(leadDetails.tags)
+
+
+
+  const handleCommentSubmit = async () => {
+    try {
+      const response = await axios.post(`${backendUrl}/lead/${leadDetails._id}/comment`, {
+        author: leadDetails.salesAgent._id,
+        commentText: newComment
+      },
+      {
+        headers: { "Content-Type": "application/json" }
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+  };
 
   const handleAddTag = async (newTag) => {
 
