@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TrackerContext from "../contexts/TrackerContext";
@@ -13,26 +13,38 @@ const LeadDetails = () => {
 
   const backendUrl = "https://tracker-backend-alpha.vercel.app";
 
+
   const navigate = useNavigate();
 
   const { leads } = useContext(TrackerContext);
 
-  const [showTagForm, setShowTagForm] = useState(false);
-
-  const [agentReassign, setAgentReassign] = useState(false);
-
   const {id} = useParams();
-
-
-  const [newComment, setNewComment] = useState("");
-
 
   const leadDetails = leads.find((lead) => lead._id === id)
 
   // console.log(leadDetails);
 
+  const {data: comments, loading, error} = useAxios(`${backendUrl}/lead/${leadDetails._id}/readComments`)
+
 
   const [leadTags, setLeadTags] = useState(leadDetails.tags)
+
+  const [showTagForm, setShowTagForm] = useState(false);
+
+  const [agentReassign, setAgentReassign] = useState(false);
+
+
+  const [newComment, setNewComment] = useState("");
+
+  const [commentsList, setCommentsList] = useState([]);
+
+
+  useEffect(() => {
+    if(comments){
+      setCommentsList(comments)
+    }
+  }, [comments])
+
 
 
   const handleCommentSubmit = async () => {
@@ -40,10 +52,14 @@ const LeadDetails = () => {
       const response = await axios.post(`${backendUrl}/lead/${leadDetails._id}/comment`, {
         author: leadDetails.salesAgent._id,
         commentText: newComment
-      },
-      {
-        headers: { "Content-Type": "application/json" }
       })
+
+      if(response.status === 200){
+        const newAddedComment = response.data;
+
+        setCommentsList((prevComments) => [...prevComments, newAddedComment]);
+        setNewComment("")
+      }
 
     } catch (error) {
       console.error(error)
@@ -106,14 +122,12 @@ const LeadDetails = () => {
   };
 
 
-  const {data: comments, loading, error} = useAxios(`${backendUrl}/lead/${leadDetails._id}/readComments`)
-
   if (loading) {
-    return <p>Loading comments...</p>;
+    return <p>Loading...</p>;
   }
   
   if (error) {
-    return <p>Error loading comments: {error.message}</p>;
+    return <p>Error: {error.message}</p>;
   }
   
 
@@ -205,7 +219,7 @@ const LeadDetails = () => {
               </div>
 
               <ul className="list-group mt-3">
-                {comments && comments.slice().reverse().map((comment, index) => (
+                {commentsList && commentsList.slice().reverse().map((comment, index) => (
                   <li key={index} className="list-group-item">
                     <p><strong>{comment.author.name}</strong> - <small>{new Date(comment.createdAt).toLocaleString('en-US')}</small></p>
                     <p>{comment.commentText}</p>
