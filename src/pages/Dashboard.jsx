@@ -137,61 +137,139 @@ const Dashboard = () => {
             </div>
 
             {/* Lead Status Overview */}
-            <div className="mt-4">
-              <h4>Lead Status Overview</h4>
+            <div className="mt-2">
               <div className="row">
-                {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
-                  <div key={status} className="col-md-2 col-sm-4 flex-grow-1 mt-2">
-                    <div className="card text-center p-2">
-                      <h6>{status}</h6>
-                      <div className="lead">{leadStatusCounts[status] || 0}</div>
+                <div className="col-md-12 mt-2">
+                    <div className="card p-0">
+                        <div className="card-body">
+                        <h4>Lead Status Overview</h4>
+                        <div className="row">
+                            {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
+                            <div key={status} className="col-md-2 col-sm-4 flex-grow-1 mt-1">
+                                <div className="card text-center p-2">
+                                <h6>{status}</h6>
+                                <div className="lead">{leadStatusCounts[status] || 0}</div>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                ))}
+                </div>  
+
+              </div>
+              
+
+            {/* Quick Actions */}
+            <div className="mt-2">
+              <div className="row">
+                <div className="col-md-12 mt-2">
+                <div className="card p-0">
+                    <div className="card-body">
+                    <h4>Quick Actions </h4>
+                        <div className="row">
+                            <div className="col-md-4 mt-2">
+                                <div className="card">
+                                    <div className="card-body p-0 text-center">
+                                        <Link to="/lead/addLead">
+                                        <div className="bi bi-person-plus fs-5 circle-icon"></div>
+                                        </Link>
+                                        <div>
+                                            New Lead
+                                        </div>
+                                        <small className="mt-1 fw-light">Add new prospect</small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="col-md-4 mt-2">
+                                <div className="card">
+                                    <div className="card-body p-0 text-center">
+                                    <Link to="/reports">
+                                    <div className="bi bi-receipt fs-5 circle-icon"></div>
+                                    </Link>
+                                        <div>
+                                            See Reports
+                                        </div>
+                                        <small className="mt-1 fw-light">View earnings</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div className="col-md-4 mt-2">
+                                <div className="card">
+                                    <div className="card-body p-0 text-center">
+                                        <Link to="/sales"><div className="bi bi-cash-coin fs-5 circle-icon"></div></Link>
+                                        <div>
+                                            View  Deals
+                                        </div>
+                                        <small className="mt-1 fw-light">Search for new deals</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+              </div>
               </div>
             </div>
 
             {/* Quick Filters */}
-            <div className="mt-4">
-              <h4>Quick Filters: </h4>
-              <div className="d-flex gap-2 flex-wrap">
-                
-                  <button className={`btn ${selectedPriority === "High" ? "btn-danger": "btn-outline-danger"}`} value="High" onClick={priorityHandler}>
-                    High
-                  </button>
+            <div className="mt-3">             
+              <div className="row">
+                <div className="col-md-12">
+                    <div className="card p-2">
+                        <div className="card-body">
+                        <h4>Quick Filters </h4>
 
-                  <button className={`btn ${selectedPriority === "Medium" ? "btn-warning": "btn-outline-warning"}`} value="Medium" onClick={priorityHandler}>
-                    Medium
-                  </button>
+                        <div className="d-flex justify-content-between mt-4">
+                        
+                        <div className="fs-5">{selectedPriority} Priority Leads</div>
+                        <div className="d-flex gap-2 flex-wrap">
+                        <button className={`btn btn-sm ${selectedPriority === "High" ? "btn-danger": "btn-outline-danger"}`} value="High" onClick={priorityHandler}>
+                        High
+                        </button>
 
-                  <button className={`btn ${selectedPriority === "Low" ? "btn-primary": "btn-outline-primary"}`} value="Low" onClick={priorityHandler}>
-                    Low
-                  </button>
+                        <button className={`btn btn-sm ${selectedPriority === "Medium" ? "btn-warning": "btn-outline-warning"}`} value="Medium" onClick={priorityHandler}>
+                        Medium
+                        </button>
+
+                        <button className={`btn btn-sm ${selectedPriority === "Low" ? "btn-primary": "btn-outline-primary"}`} value="Low" onClick={priorityHandler}>
+                        Low
+                        </button>
+                        </div>
+
+                        </div>
+                        
+
+                    {/* Priority Leads */}
+                    <div className="mt-3">
+                        <ul className="list-group">
+                            {priorityLeads.length > 0 ? (
+                            priorityLeads.map((lead, index) => (
+                                <li key={index} className="list-group-item d-flex justify-content-between">
+                                <span>{lead.name} ({lead.source})</span>
+                                <span className={`badge ${priorityColors[lead.priority]}`}>{lead.priority}</span>
+                                </li>
+                            ))
+                            ) : (
+                            <li className="list-group-item text-muted">No leads available</li>
+                            )}
+                        </ul>
+                        </div>
+                        </div>
+                    </div>
+                </div>
               </div>
+
+              
             </div>
 
-            {/* Priority Leads */}
-            <div className="mt-4">
-              <h4>{selectedPriority} Priority Leads</h4>
-              <ul className="list-group">
-                {priorityLeads.length > 0 ? (
-                  priorityLeads.map((lead, index) => (
-                    <li key={index} className="list-group-item d-flex justify-content-between">
-                      <span>{lead.name} ({lead.source})</span>
-                      <span className={`badge ${priorityColors[lead.priority]}`}>{lead.priority}</span>
-                    </li>
-                  ))
-                ) : (
-                  <li className="list-group-item text-muted">No leads available</li>
-                )}
-              </ul>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="my-4 d-flex gap-3">
-              <Link to="/lead/addLead" className="btn btn-primary">Add New Lead</Link>
-              <Link to="/sales/addSaleAgent" className="btn btn-secondary">Add New Agent</Link>
-            </div>
+            
           </main>
         </div>
       </div>

@@ -24,7 +24,7 @@ const SalesAgentList = () => {
             <div className="py-2 mx-3 flex-grow-1">
                
             <div className="d-flex justify-content-between">
-            <h2 className="mb-0">Sales Agent Overview</h2>
+            <h2 className="mb-0">Sales Agent Overview ({agents.length})</h2>
             <Link to="/sales/addSaleAgent" className="btn btn-primary">
                 + Add Agent
             </Link>

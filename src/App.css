@@ -17,6 +17,14 @@ body, html {
   background-position: center;
 }
 
+.circle-icon {
+  background-color: rgb(213, 221, 255);
+  border-radius: 50%;
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .work-sans-normal{
   font-family: "Work Sans", serif;
@@ -32,6 +40,15 @@ body, html {
   flex: 1; /* Push footer to the bottom by taking available space */
   padding-top: 70px;
 }
+
+.title-text {
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  -webkit-background-clip: text; /* Clips the background to the text */
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Makes the text transparent to show the gradient */
+  font-weight: bold;
+}
+
 
 .card-info{
   background:rgba(255, 255, 255, 0.15) !important;

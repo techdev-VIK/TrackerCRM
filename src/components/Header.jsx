@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg p-3" style={{position: "fixed", width: "100%", zIndex: 1000, backgroundImage: 'linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%)'}}>
+    <nav className="navbar bg-body-tertiary navbar-expand-lg p-3" style={{position: "fixed", width: "100%", zIndex: 1000}}>
   <div className="container-fluid">
-    <NavLink className="work-sans-normal me-5" to="/">Tracker</NavLink>
+    <NavLink className="work-sans-normal me-5 title-text" to="/">Tracker</NavLink>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>

@@ -52,7 +52,7 @@ const AddSalesAgent = () => {
         <Header />
             <div className="d-flex justify-content-center align-items-center main-content my-5">
                 <div className="card shadow p-4" style={{maxWidth: "30rem", width: "100%"}}>
-                    <h3 className="text-center mb-3">{agentValues ? "Update":"Add"} Sales Agent</h3>
+                    <h3 className="text-center mb-3 title-text">{agentValues ? "Update":"Add"} Sales Agent</h3>
                     <hr />
 
                     <form onSubmit={formHandler}>
