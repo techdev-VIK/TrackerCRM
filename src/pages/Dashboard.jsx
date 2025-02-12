@@ -96,10 +96,10 @@ const Dashboard = () => {
                       <div>$</div>
                     </div>
                   </div>
-                  <div className="card-body">
+                  <div className="card-body p-1 p-0">
                     <h5>${monthlyForecast}</h5>
                     <small>
-                      <span className="text-success">+15.69%</span> from last month
+                      Projected for this month
                     </small>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const Dashboard = () => {
                       <span className="bi bi-people me-2"></span>
                     </div>
                   </div>
-                  <div className="card-body">
+                  <div className="card-body p-1">
                     <h5>${dealsClosedMoney}</h5>
                     <small>Active agents · {agents.length} on active deals</small>
                   </div>
@@ -128,7 +128,7 @@ const Dashboard = () => {
                       <span className="bi bi-graph-up-arrow me-2"></span>
                     </div>
                   </div>
-                  <div className="card-body">
+                  <div className="card-body p-1">
                     <h5>${totalInPipeline}</h5>
                     <small>Active leads · {leads.length} leads in pipeline</small>
                   </div>
@@ -144,7 +144,7 @@ const Dashboard = () => {
                   <div key={status} className="col-md-2 col-sm-4 flex-grow-1 mt-2">
                     <div className="card text-center p-2">
                       <h6>{status}</h6>
-                      <p className="lead">{leadStatusCounts[status] || 0}</p>
+                      <div className="lead">{leadStatusCounts[status] || 0}</div>
                     </div>
                   </div>
                 ))}
