@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 
-
 const ReportPage = () => {
   const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
 

@@ -3,9 +3,7 @@ import SidebarMenu from "./SidebarMenu";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-
     const [isOpen, setIsOpen] = useState(true);
-
 
   return (
 
