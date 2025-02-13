@@ -42,12 +42,10 @@ The Tracker CRM app will focus on lead management with defined steps for each le
 * Qucik actions like Add a lead or view reports
 
 
-### 4. Authentication using JWT
+### 4. Reports
 
-* Login form - existing users
-* Private routes - login, wishlist and checkout
-* Create New Account - New Users
-* Data stored on MongoDB
+* Used chart.js for creating plots
+* Data used to create Pie chart, Bar chart
 
 
 
@@ -71,11 +69,11 @@ You can set up and run this project as below:
 
 1) Clone this repository to your local machine:
 
-- git clone **link**
+- use git clone 
 
 2) Navigate into the project directory:
 
-- cd **projectName**
+- cd [folder]
 
 
 3) Install dependencies:
