@@ -9,13 +9,17 @@ export default function useAxios(url) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-   useEffect(() => {
+   const fetchData = () => {
         setLoading(true);
         axios.get(url)
         .then((res) => setData(res.data))
         .catch((err) => setError(err.message))
         .finally(() => setLoading(false))
-   }, [url]);
+   }
 
-   return {data, loading, error}
+   useEffect(() => {
+      fetchData();
+   }, [url])
+
+   return {data, loading, error, refetch: fetchData}
 }

@@ -12,7 +12,7 @@ const AddLead = () => {
 
   const backendUrl = "https://tracker-backend-alpha.vercel.app";
 
-  const { tagOptions, agents } = useContext(TrackerContext);
+  const { tagOptions, agents, fetchLeadData } = useContext(TrackerContext);
 
 
   const leadValues = location.state?.leadValues;
@@ -81,6 +81,8 @@ const AddLead = () => {
         setBudget('');
         setTimeToClose('');
         setTags([]);
+
+        fetchLeadData();
       }
     } catch (error) {
       console.error(error);

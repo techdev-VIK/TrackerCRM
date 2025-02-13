@@ -8,7 +8,7 @@ const TrackerContext = createContext();
 
 export const TrackerProvider = ({children}) => {
 
-    const {data: leads, loading: leadsLoading, error: leadsError} = useAxios(`https://tracker-backend-alpha.vercel.app/allLeads`);
+    const {data: leads, loading: leadsLoading, error: leadsError, refetch: fetchLeadData} = useAxios(`https://tracker-backend-alpha.vercel.app/allLeads`);
 
 
     const {data: agents, loading: agentsLoading, error: agentsError} = useAxios(`https://tracker-backend-alpha.vercel.app/allAgents`)
@@ -18,7 +18,7 @@ export const TrackerProvider = ({children}) => {
     const tagOptions = tags.map((tag) => ({value: tag.name, label: tag.name}));
 
     return(
-        <TrackerContext.Provider value={{leads, agents, tagOptions}}>
+        <TrackerContext.Provider value={{leads, agents, tagOptions, fetchLeadData}}>
             {children}
         </TrackerContext.Provider>
     )
