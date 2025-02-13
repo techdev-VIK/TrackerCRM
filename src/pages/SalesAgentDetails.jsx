@@ -10,11 +10,10 @@ const SalesAgentDetails = () => {
 
   const {id} = useParams();
 
-  // console.log(id);
+
 
   const agentDetails = agents.find((agent) => agent._id == id)
 
-  // console.log(agentDetails);
 
 
   return (

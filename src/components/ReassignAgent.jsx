@@ -13,7 +13,7 @@ const ReassignAgent = ({onAddAgent, onClose}) => {
         if(agentId.trim() === '') return;
 
         try {
-            onAddAgent(agentId);  // Trigger the function from the parent
+            onAddAgent(agentId);
             setAgentId('')
         } catch (error) {
             console.error(error);

@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const { leads, agents, leadsLoading, leadsError } = useContext(TrackerContext);
 
-//   console.log("Leads from context:", leads);
-
 
   const [priorityLeads, setPriorityLeads] = useState([])
 

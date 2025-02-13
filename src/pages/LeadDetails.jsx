@@ -22,7 +22,6 @@ const LeadDetails = () => {
 
   const leadDetails = leads.find((lead) => lead._id === id)
 
-  // console.log(leadDetails);
 
   const {data: comments, loading, error} = useAxios(`${backendUrl}/lead/${leadDetails._id}/readComments`)
 

@@ -8,7 +8,6 @@ const LeadList = () => {
 
     const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
 
-//   console.log("Leads from context:", leads);
 
 
     const [searchLead, setSearchLead] = useState('')
