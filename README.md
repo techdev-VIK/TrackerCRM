@@ -6,9 +6,15 @@ The Tracker CRM app will focus on lead management with defined steps for each le
 
 * Styling using Bootstrap
 * React Router for routes
+<<<<<<< HEAD
 * React Context to manage state globally
 * React with chart.js for data visualization
 * Axios: For making API requests
+=======
+* React Context to manage state globally.
+* React with chart.js
+* Axios: For making API requests.
+>>>>>>> b85466f (Fixed docs)
 * Express & Node for API Repo Link
 * MongoDB using mongoose for data storage
 

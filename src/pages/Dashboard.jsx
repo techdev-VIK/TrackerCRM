@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const { leads, agents, leadsLoading, leadsError } = useContext(TrackerContext);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b85466f (Fixed docs)
   const [priorityLeads, setPriorityLeads] = useState([])
 
   const [selectedPriority, setSelectedPriority] = useState('High')
