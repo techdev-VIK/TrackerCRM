@@ -13,11 +13,8 @@ const ReassignAgent = ({onAddAgent, onClose}) => {
         if(agentId.trim() === '') return;
 
         try {
-<<<<<<< HEAD
             onAddAgent(agentId);
-=======
-            onAddAgent(agentId); 
->>>>>>> b85466f (Fixed docs)
+
             setAgentId('')
         } catch (error) {
             console.error(error);
