@@ -94,7 +94,8 @@ const LeadDetails = () => {
         const response = await axios.delete(`${backendUrl}/delete/lead/${leadDetails._id}`)
 
         if (response.status === 200) {
-          navigate('/lead')
+          navigate('/lead');
+          fetchLeadData();
         } else {
           console.error("Failed to delete.");
         }
