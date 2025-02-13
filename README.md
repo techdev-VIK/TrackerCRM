@@ -56,7 +56,7 @@ https://tracker-crm.vercel.app/
 
 
 
-## Radiance - Beauty Products E-Commerce Website
+## Tracker CRM
 
 This project was bootstrapped with Vite.
 
