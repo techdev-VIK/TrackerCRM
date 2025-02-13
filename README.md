@@ -1,3 +1,5 @@
+![WakaTime Badge](https://wakatime.com/badge/user/8b7a7ee7-51a8-4329-b5f6-89b229b1147a/project/615d506b-bbc7-421f-b60b-e59fd04a03c0.svg)
+
 # Tracker CRM
 
 The Tracker CRM app will focus on lead management with defined steps for each lead's lifecycle. We can assign sales agents to leads and allow users to add comments or updates to each lead.
