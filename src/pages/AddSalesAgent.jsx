@@ -8,7 +8,7 @@ const AddSalesAgent = () => {
 
     const location = useLocation();
 
-    const backendUrl = "http://localhost:3000";
+    const backendUrl = "https://tracker-backend-alpha.vercel.app";
 
     const agentValues = location.state?.agentValues;
 
