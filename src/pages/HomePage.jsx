@@ -38,7 +38,7 @@ const HomePage = () => {
                 </div>
 
                   <p className="fs-6 fw-light">
-                  Onboard new merchants faster and boost your team's productivity with our cutting-edge application software, designed to automate boarding at multiple ISOs seamlessly.
+                  Onboard new merchants faster and boost your team's productivity with our cutting-edge application software, designed to ease the process seamlessly.
                   </p>
               </div>
             </div>
@@ -47,11 +47,11 @@ const HomePage = () => {
             <div className="card mb-3 card-info" >
               <div className="card-body">
                 <div className="card-title">
-                  <h5>Underwriting</h5>
+                  <h5>Management</h5>
 
                 </div>
                   <p className="fs-6 fw-light">
-                  Accelerate Merchant Underwriting with comprehensive checks, ensuring rapid processing with consistent reliability.
+                  Manage Leads through agents with defined steps for each lead's lifecycle. We can assign sales agents to leads and allow users to add comments or updates to each lead.
                   </p>
               </div>
             </div>
@@ -64,7 +64,7 @@ const HomePage = () => {
                 </div>
 
                   <p className="fs-6 fw-light">
-                  Easily export your data into an Excel spreadsheet where you can do whatever you want with it.
+                  Easily analyze your reports using interactive charts, helping you track performance, measure success, and gain valuable insights into your sales and lead management.
                   </p>
               </div>
             </div>
