@@ -11,7 +11,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearS
 
 
 const ReportPage = () => {
-  const { leads } = useContext(TrackerContext);
+  const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
 
   
   const getTotalLeads = () => {
@@ -73,6 +73,13 @@ const ReportPage = () => {
       ],
     };
   };
+
+
+  if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, Records not available, please check later...</div>
+
+  if (leadsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
+  <span className="visually-hidden">Loading...</span>
+</div></div>
 
   return (
     <div className="d-flex" >

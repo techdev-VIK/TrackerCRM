@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Header from "../components/Header";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import TrackerContext from "../contexts/TrackerContext";
 
 
 const AddSalesAgent = () => {
 
     const location = useLocation();
 
+    const navigate = useNavigate(); 
+
     const backendUrl = "https://tracker-backend-alpha.vercel.app";
+
+    const { fetchAgentData } = useContext(TrackerContext);
 
     const agentValues = location.state?.agentValues;
 
@@ -38,7 +43,12 @@ const AddSalesAgent = () => {
 
             if(response.status === 200){
                 setName('');
-                setEmail('')
+                setEmail('');
+                fetchAgentData();
+
+                setTimeout(() => {
+                    navigate('/salesAgents')
+                }, 3000);
             }
         } catch (error) {
             console.error(error)

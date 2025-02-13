@@ -83,12 +83,17 @@ const AddLead = () => {
         setTags([]);
 
         fetchLeadData();
+
+        setTimeout(() => {
+          navigate('/lead')
+      }, 3000);
       }
     } catch (error) {
       console.error(error);
     }
 
   }
+
 
   return (
     <>

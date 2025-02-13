@@ -5,7 +5,7 @@ import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const { leads, agents } = useContext(TrackerContext);
+  const { leads, agents, leadsLoading, leadsError } = useContext(TrackerContext);
 
 //   console.log("Leads from context:", leads);
 
@@ -67,6 +67,12 @@ const Dashboard = () => {
     Medium: "bg-warning",
     Low: "bg-primary"
   };
+
+  if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, Records not available, please check later...</div>
+
+  if (leadsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
+  <span className="visually-hidden">Loading...</span>
+</div></div>
   
 
   return (
@@ -228,20 +234,21 @@ const Dashboard = () => {
 
                         <div className="d-flex justify-content-between mt-4">
                         
-                        <div className="fs-5">{selectedPriority} Priority Leads</div>
                         <div className="d-flex gap-2 flex-wrap">
-                        <button className={`btn btn-sm ${selectedPriority === "High" ? "btn-danger": "btn-outline-danger"}`} value="High" onClick={priorityHandler}>
+                        <button className={`btn btn-sm rounded ${selectedPriority === "High" ? "btn-danger ": "btn-light"}`} value="High" onClick={priorityHandler}>
                         High
                         </button>
 
-                        <button className={`btn btn-sm ${selectedPriority === "Medium" ? "btn-warning": "btn-outline-warning"}`} value="Medium" onClick={priorityHandler}>
+                        <button className={`btn btn-sm rounded ${selectedPriority === "Medium" ? "btn-warning": "btn-light"}`} value="Medium" onClick={priorityHandler}>
                         Medium
                         </button>
 
-                        <button className={`btn btn-sm ${selectedPriority === "Low" ? "btn-primary": "btn-outline-primary"}`} value="Low" onClick={priorityHandler}>
+                        <button className={`btn btn-sm rounded ${selectedPriority === "Low" ? "btn-primary": "btn-light"}`} value="Low" onClick={priorityHandler}>
                         Low
                         </button>
                         </div>
+                        
+                        <div className="fs-5">{selectedPriority} Priority Leads</div>
 
                         </div>
                         
@@ -253,7 +260,7 @@ const Dashboard = () => {
                             priorityLeads.map((lead, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between">
                                 <span>{lead.name} ({lead.source})</span>
-                                <span className={`badge ${priorityColors[lead.priority]}`}>{lead.priority}</span>
+                                <span className={`badge rounded-pill ${priorityColors[lead.priority]}`}>{lead.priority}</span>
                                 </li>
                             ))
                             ) : (

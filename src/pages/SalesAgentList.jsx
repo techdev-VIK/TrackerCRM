@@ -7,12 +7,19 @@ import { Link } from "react-router-dom";
 
 const SalesAgentList = () => {
 
-    const { agents } = useContext(TrackerContext);
+    const { agents, agentsLoading, agentsError } = useContext(TrackerContext);
 
     const [searchAgent, setAgentSearch] = useState('');
 
 
     const filteredArray = agents.filter((agent) => agent.name.toLowerCase().includes(searchAgent.toLowerCase()))
+
+
+    if (agentsError) return <div className="alert alert-danger mt-5 text-center">[{agentsError}]    Sorry, Records not available, please check later...</div>
+
+    if (agentsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
+    <span className="visually-hidden">Loading...</span>
+    </div></div>
       
 
     return(

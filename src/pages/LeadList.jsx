@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const LeadList = () => {
 
-    const { leads } = useContext(TrackerContext);
+    const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
 
 //   console.log("Leads from context:", leads);
 
@@ -29,7 +29,11 @@ const LeadList = () => {
         filteredStatus;
     }
     
-    
+    if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, Records not available, please check later...</div>
+
+  if (leadsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
+  <span className="visually-hidden">Loading...</span>
+</div></div>
 
     return(
         <>

@@ -18,7 +18,7 @@ const HomePage = () => {
       </section>
       
       <section className="m-5 text-center">
-      <img src="tracker1.avif" className="img-fluid rounded my-5"/>
+      <img src="homeImg1.png" className="img-fluid rounded my-5"/>
       </section>
 
       <section className="py-5 text-light" style={{backgroundImage:'linear-gradient(to top, #00c6fb 0%, #005bea 100%)'}}>
@@ -71,7 +71,7 @@ const HomePage = () => {
           </div>
 
           <div className="col-md-7 text-center">
-              <img src="tracker1.avif" className="rounded img-fluid" style={{ maxWidth: '100%', height: '100%' }}/>
+              <img src="homeImg2.png" className="rounded img-fluid" style={{ maxWidth: '100%', height: '100%' }}/>
           </div>
         </div>
         </div>

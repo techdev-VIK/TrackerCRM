@@ -122,13 +122,11 @@ const LeadDetails = () => {
   };
 
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-  
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
+  if (error) return <div className="alert alert-danger mt-5 text-center">[{error}]    Sorry, Records not available, please check later...</div>
+
+  if (loading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
+  <span className="visually-hidden">Loading...</span>
+</div></div>
   
 
   return (
