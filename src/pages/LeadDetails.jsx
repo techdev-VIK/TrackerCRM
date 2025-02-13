@@ -16,7 +16,7 @@ const LeadDetails = () => {
 
   const navigate = useNavigate();
 
-  const { leads, fetchedLeadData } = useContext(TrackerContext);
+  const { leads, fetchLeadData } = useContext(TrackerContext);
 
   const {id} = useParams();
 
@@ -112,8 +112,8 @@ const LeadDetails = () => {
   
       if (response.status === 200) {
         setAgentReassign(false);
-        fetchedLeadData()
-        navigate('/lead')
+        fetchLeadData();
+        navigate('/lead');
       } else {
         console.error("Failed to reassign agent.");
       }
