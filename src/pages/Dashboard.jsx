@@ -60,9 +60,9 @@ const Dashboard = () => {
   }
 
   const priorityColors = {
-    High: "bg-danger",
-    Medium: "bg-warning",
-    Low: "bg-primary"
+    High: "btn-danger",
+    Medium: "btn-warning",
+    Low: "btn-primary"
   };
 
   if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, Records not available, please check later...</div>
@@ -257,7 +257,7 @@ const Dashboard = () => {
                             priorityLeads.map((lead, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between">
                                 <span>{lead.name} ({lead.source})</span>
-                                <span className={`badge rounded-pill ${priorityColors[lead.priority]}`}>{lead.priority}</span>
+                                <span className={`h-25 btn btn-sm ${priorityColors[lead.priority]}`}>{lead.priority}</span>
                                 </li>
                             ))
                             ) : (
