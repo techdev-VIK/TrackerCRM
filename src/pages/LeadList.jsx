@@ -126,7 +126,7 @@ const LeadList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {filteredStatus.map((lead) => {
+                    {filteredStatus.length > 0 ? (filteredStatus.map((lead) => {
 
                         const name = lead.name;
 
@@ -153,7 +153,7 @@ const LeadList = () => {
                         </tr>
                         )
                     }
-                    )}
+                    )): <tr><td colSpan="6" className="text-center">No leads found...</td></tr>}
                     </tbody>
                 </table>
                 </div>
