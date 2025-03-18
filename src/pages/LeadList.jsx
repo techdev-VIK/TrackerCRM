@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Sidebar from "../components/Sidebar"
 import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const LeadList = () => {
 
     const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
-
 
 
     const [searchLead, setSearchLead] = useState('')
@@ -16,9 +16,36 @@ const LeadList = () => {
 
     const [sortBy, setSortBy] = useState('');
 
-    const filteredLead = leads.filter((lead) => lead.name.toLowerCase().includes(searchLead.toLowerCase()));
+    const [filteredLead, setFilteredLead] = useState([]);
+
+
+    const searchLeadsQuery = async () => {
+        try {
+            const response = await axios('https://tracker-backend-alpha.vercel.app/queryLeads/?q=' + searchLead);
+
+            setFilteredLead(response.data);
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    
+
+    useEffect(() => {
+        
+        const timer = setTimeout(() => {
+            searchLeadsQuery();
+        }, 400)
+
+        return() => {
+            clearTimeout(timer)
+        }
+
+    }, [searchLead]);
+
 
     const filteredStatus = (statusLead) ? filteredLead.filter((lead) => lead.status === statusLead) : filteredLead;
+
 
     if(sortBy === "Priority"){
         filteredStatus.sort((a,b) => a.priority.localeCompare(b.priority))
