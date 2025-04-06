@@ -188,7 +188,7 @@ const LeadDetails = () => {
                 <div className="d-flex justify-content-between">
                 <Link to="/lead/addLead" className="btn btn-primary" state={{leadValues: leadDetails}}>Edit Lead Details</Link>
 
-                <button className="btn btn-danger" onClick={deleteLeadHandler}>Delete Lead</button>
+                <button className="btn btn-danger" onClick={deleteLeadHandler} disabled>Delete Lead</button>
                 </div>
                 
               </div>

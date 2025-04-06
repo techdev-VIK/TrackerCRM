@@ -153,7 +153,7 @@ const LeadList = () => {
                         </tr>
                         )
                     }
-                    )): <tr><td colSpan="6" className="text-center">No leads found...</td></tr>}
+                    )): <tr><td colSpan="6" className="text-center">Loading...</td></tr>}
                     </tbody>
                 </table>
                 </div>
