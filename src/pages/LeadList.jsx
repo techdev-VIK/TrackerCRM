@@ -16,7 +16,7 @@ const LeadList = () => {
 
     const [sortBy, setSortBy] = useState('');
 
-    const [filteredLead, setFilteredLead] = useState([]);
+    const [filteredLead, setFilteredLead] = useState(leads);
 
 
     const searchLeadsQuery = async () => {
@@ -35,7 +35,7 @@ const LeadList = () => {
         
         const timer = setTimeout(() => {
             searchLeadsQuery();
-        }, 400)
+        }, 150)
 
         return() => {
             clearTimeout(timer)
