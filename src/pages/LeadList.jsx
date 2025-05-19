@@ -17,9 +17,7 @@ const LeadList = () => {
 
     const [sortBy, setSortBy] = useState('');
 
-    const [filteredLead, setFilteredLead] = useState(leads);
-
-    const [displayedLeads, setDisplayedLeads] = useState([]);
+    const [filteredLeads, setFilteredLeads] = useState(leads);
 
 
 
@@ -27,7 +25,7 @@ const LeadList = () => {
         try {
             const response = await axios('https://tracker-backend-alpha.vercel.app/queryLeads/?q=' + searchLead);
 
-            setFilteredLead(response.data);
+            setFilteredLeads(response.data);
 
         } catch (error) {
             console.error(error)
@@ -35,76 +33,44 @@ const LeadList = () => {
     }
     
 
-    useEffect(() => {
-        
-        const timer = setTimeout(() => {
-            searchLeadsQuery();
-        }, 150)
+        useEffect(() => {
+            
+            const timer = setTimeout(() => {
+                searchLeadsQuery();
+            }, 100)
 
-        return() => {
-            clearTimeout(timer)
-        }
+            return() => {
+                clearTimeout(timer)
+            }
 
     }, [searchLead]);
 
 
-    const filteredStatus = (statusLead) ? filteredLead.filter((lead) => lead.status === statusLead) : filteredLead;
-
-    
+        const filteredStatus = (statusLead) ? filteredLeads.filter((lead) => lead.status === statusLead) : filteredLeads;
 
 
-    // useEffect(() => {
+        const priorityOrder = {
+        High: 1,
+        Medium: 2,
+        Low: 3
+        };
 
-    //     const priorityOrder = {
-    //     High: 1,
-    //     Medium: 2,
-    //     Low: 3
-    //     };
-
-    //     if(sortBy === "Priority"){
-    //     filteredStatus.sort((a,b) => priorityOrder[a.priority] - priorityOrder[b.priority])
-    //     }else if(sortBy === "Time To Close"){
-    //     filteredStatus.sort((a,b) => a.timeToClose - b.timeToClose)
-    //     }else{
-    //     filteredStatus
-    //     }
-    // }, [sortBy])
-
-    useEffect(() => {
-    let result = [...leads]; // start from all leads
-
-    // Search filter
-    if (searchLead) {
-        result = result.filter(lead =>
-            lead.name.toLowerCase().includes(searchLead.toLowerCase())
-        );
-    }
-
-    // Status filter
-    if (statusLead) {
-        result = result.filter(lead => lead.status === statusLead);
-    }
-
-    // Sorting
-    const priorityOrder = { High: 1, Medium: 2, Low: 3 };
-
-    if (sortBy === "Priority") {
-        result.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-    } else if (sortBy === "Time To Close") {
-        result.sort((a, b) => a.timeToClose - b.timeToClose);
-    }
-
-    setDisplayedLeads(result);
-
-}, [searchLead, statusLead, sortBy, leads]);
+        if(sortBy === "Priority"){
+        filteredStatus.sort((a,b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+        }else if(sortBy === "Time To Close"){
+        filteredStatus.sort((a,b) => a.timeToClose - b.timeToClose)
+        }else{
+        filteredStatus
+        }
+ 
 
 
     
-    if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, Records not available, please check later...</div>
+    if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, records not available, please check later.</div>
 
-  if (leadsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
-  <span className="visually-hidden">Loading...</span>
-</div></div>
+    if (leadsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
+    <span className="visually-hidden">Loading...</span>
+    </div></div>
 
     return(
         <>
@@ -171,7 +137,7 @@ const LeadList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {displayedLeads.length > 0 ? (displayedLeads.map((lead) => {
+                    {filteredStatus.length > 0 ? (filteredStatus.map((lead) => {
 
                         const name = lead.name;
 
