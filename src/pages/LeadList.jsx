@@ -9,7 +9,8 @@ const LeadList = () => {
 
     const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
 
-
+    console.log(leads)
+    
     const [searchLead, setSearchLead] = useState('')
 
     const [statusLead, setStatusLead] = useState('')
@@ -17,6 +18,9 @@ const LeadList = () => {
     const [sortBy, setSortBy] = useState('');
 
     const [filteredLead, setFilteredLead] = useState(leads);
+
+    const [displayedLeads, setDisplayedLeads] = useState([]);
+
 
 
     const searchLeadsQuery = async () => {
@@ -46,14 +50,55 @@ const LeadList = () => {
 
     const filteredStatus = (statusLead) ? filteredLead.filter((lead) => lead.status === statusLead) : filteredLead;
 
+    
 
-    if(sortBy === "Priority"){
-        filteredStatus.sort((a,b) => a.priority.localeCompare(b.priority))
-    }else if(sortBy === "Time To Close"){
-        filteredStatus.sort((a,b) => a.timeToClose - b.timeToClose)
-    }else{
-        filteredStatus;
+
+    // useEffect(() => {
+
+    //     const priorityOrder = {
+    //     High: 1,
+    //     Medium: 2,
+    //     Low: 3
+    //     };
+
+    //     if(sortBy === "Priority"){
+    //     filteredStatus.sort((a,b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+    //     }else if(sortBy === "Time To Close"){
+    //     filteredStatus.sort((a,b) => a.timeToClose - b.timeToClose)
+    //     }else{
+    //     filteredStatus
+    //     }
+    // }, [sortBy])
+
+    useEffect(() => {
+    let result = [...leads]; // start from all leads
+
+    // Search filter
+    if (searchLead) {
+        result = result.filter(lead =>
+            lead.name.toLowerCase().includes(searchLead.toLowerCase())
+        );
     }
+
+    // Status filter
+    if (statusLead) {
+        result = result.filter(lead => lead.status === statusLead);
+    }
+
+    // Sorting
+    const priorityOrder = { High: 1, Medium: 2, Low: 3 };
+
+    if (sortBy === "Priority") {
+        result.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+    } else if (sortBy === "Time To Close") {
+        result.sort((a, b) => a.timeToClose - b.timeToClose);
+    }
+
+    setDisplayedLeads(result);
+
+}, [searchLead, statusLead, sortBy, leads]);
+
+
     
     if (leadsError) return <div className="alert alert-danger mt-5 text-center">[{leadsError}]    Sorry, Records not available, please check later...</div>
 
@@ -126,7 +171,7 @@ const LeadList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {filteredStatus.length > 0 ? (filteredStatus.map((lead) => {
+                    {displayedLeads.length > 0 ? (displayedLeads.map((lead) => {
 
                         const name = lead.name;
 
@@ -153,7 +198,7 @@ const LeadList = () => {
                         </tr>
                         )
                     }
-                    )): <tr><td colSpan="6" className="text-center">Loading...</td></tr>}
+                    )): <tr><td colSpan="6" className="text-center">No results found.</td></tr>}
                     </tbody>
                 </table>
                 </div>
