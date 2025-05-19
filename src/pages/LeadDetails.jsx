@@ -6,6 +6,7 @@ import AddNewTag from "../components/AddNewTag";
 import axios from "axios";
 import ReassignAgent from "../components/ReassignAgent";
 import useAxios from "../hooks/useAxios";
+import { toast } from "react-toastify";
 
 
 
@@ -58,10 +59,12 @@ const LeadDetails = () => {
 
         setCommentsList((prevComments) => [...prevComments, newAddedComment]);
         setNewComment("")
+        toast.success("Comment added!");
       }
 
     } catch (error) {
       console.error(error)
+      toast.error("Oops! Something went wrong. Please try again!");
     }
   };
 
@@ -75,12 +78,15 @@ const LeadDetails = () => {
        if(response.status === 200){
         setLeadTags((prevTags) => [...prevTags, newTag]);
         setShowTagForm(false);
+        toast.success("Tag added!");
        }else{
         console.error("Failed to add tag.");
+        toast.error("Oops! Something went wrong. Please try again!");
        }
 
     } catch (error) {
       console.error(error);
+      toast.error("Oops! Something went wrong. Please try again!");
     }
     
   }
@@ -95,11 +101,14 @@ const LeadDetails = () => {
         if (response.status === 200) {
           navigate('/lead');
           fetchLeadData();
+          toast.info("Lead deleted!");
         } else {
           console.error("Failed to delete.");
+          toast.error("Oops! Something went wrong. Please try again!");
         }
       } catch (error) {
         console.error("Failed to delete.", error);
+        toast.error("Oops! Something went wrong. Please try again!");
       }
   }
 
@@ -107,23 +116,26 @@ const LeadDetails = () => {
   const salesAgentEditHandler = async (newAgentId) => {
     try {
       const response = await axios.post(`${backendUrl}/lead/edit/${leadDetails._id}/agent/reassign`, {
-        salesAgent: newAgentId,   // Sending agent ID
+        salesAgent: newAgentId,  
       });
   
       if (response.status === 200) {
         setAgentReassign(false);
         fetchLeadData();
         navigate('/lead');
+        toast.success("New Agent assigned!");
       } else {
         console.error("Failed to reassign agent.");
+        toast.error("Oops! Something went wrong. Please try again!");
       }
     } catch (error) {
       console.error(error);
+      toast.error("Oops! Something went wrong. Please try again!");
     }
   };
 
 
-  if (error) return <div className="alert alert-danger mt-5 text-center">[{error}]    Sorry, Records not available, please check later...</div>
+  if (error) return <div className="alert alert-danger mt-5 text-center">[{error}]  Sorry, records not available, please check later.</div>
 
   if (loading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
   <span className="visually-hidden">Loading...</span>

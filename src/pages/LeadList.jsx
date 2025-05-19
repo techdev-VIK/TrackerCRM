@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar"
 import TrackerContext from "../contexts/TrackerContext";
 import { Link } from "react-router-dom";
@@ -8,8 +8,6 @@ import axios from "axios";
 const LeadList = () => {
 
     const { leads, leadsLoading, leadsError } = useContext(TrackerContext);
-
-    console.log(leads)
     
     const [searchLead, setSearchLead] = useState('')
 
@@ -70,7 +68,8 @@ const LeadList = () => {
 
     if (leadsLoading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-primary" style={{width: "5rem", height: "5rem"}} role="status">
     <span className="visually-hidden">Loading...</span>
-    </div></div>
+    </div>
+    </div>
 
     return(
         <>
@@ -112,8 +111,8 @@ const LeadList = () => {
                 </div>
 
                 <div>
-                    <select id="" className="form-select" onChange={(e) => setSortBy(e.target.value)}>
-                        <option value="">Sort By</option>
+                    <select id="sortByOption" className="form-select" onChange={(e) => setSortBy(e.target.value)}>
+                        <option value="" disabled>Sort By</option>
                         <option value="Priority">Priority</option>
                         <option value="Time To Close">Time To Close</option>
                     </select>

@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import Header from "../components/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import TrackerContext from "../contexts/TrackerContext";
+import { toast } from "react-toastify";
 
 
 const AddSalesAgent = () => {
@@ -45,13 +46,18 @@ const AddSalesAgent = () => {
                 setName('');
                 setEmail('');
                 fetchAgentData();
-
+                if(!agentValues){
+                    toast.success("New agent added!");
+                }else{
+                    toast.success("Agent updated!");
+                }
                 setTimeout(() => {
                     navigate('/salesAgents')
-                }, 3000);
+                }, 2000);
             }
         } catch (error) {
             console.error(error)
+            toast.error("Oops! Something went wrong. Please try again!");
         }
 
     }

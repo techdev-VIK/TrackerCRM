@@ -1,4 +1,4 @@
-import React, {useContext } from "react";
+import {useContext } from "react";
 import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
 import TrackerContext from "../contexts/TrackerContext";

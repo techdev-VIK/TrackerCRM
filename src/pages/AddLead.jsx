@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Select from 'react-select';
 import TrackerContext from "../contexts/TrackerContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 const AddLead = () => {
@@ -84,12 +85,18 @@ const AddLead = () => {
 
         fetchLeadData();
 
+        if(!leadValues){
+           toast.success("New lead added!");
+        }else{
+          toast.success("Lead updated!");
+        }
         setTimeout(() => {
           navigate('/lead')
       }, 3000);
       }
     } catch (error) {
       console.error(error);
+      toast.error("Oops! Something went wrong. Please try again!");
     }
 
   }
