@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import Header from "../components/Header";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import TrackerContext from "../contexts/TrackerContext";
 import axios from "axios";
@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 const AddLead = () => {
 
   const location = useLocation();
+
+  const navigate = useNavigate();
 
   const backendUrl = "https://tracker-backend-alpha.vercel.app";
 
@@ -92,7 +94,7 @@ const AddLead = () => {
         }
         setTimeout(() => {
           navigate('/lead')
-      }, 3000);
+      }, 2000);
       }
     } catch (error) {
       console.error(error);

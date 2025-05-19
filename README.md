@@ -55,6 +55,9 @@ The Tracker CRM app will focus on lead management with defined steps for each le
 https://tracker-crm.vercel.app/
 
 
+## Tracker CRM - App Walkthrough - Watch Video
+
+https://www.loom.com/share/01cbec8df8744c578e3ab0cc66276766?sid=90830365-ec85-4860-8d00-270d4d4d82d8
 
 
 ## Tracker CRM
