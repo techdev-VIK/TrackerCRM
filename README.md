@@ -1,15 +1,16 @@
 # Tracker CRM
 
-The Tracker CRM app will focus on lead management with defined steps for each lead's lifecycle. We can assign sales agents to leads and allow users to add comments or updates to each lead.
+The Tracker CRM app will focus on lead management with defined steps for each lead's lifecycle. We can create new leads, assign sales agents to leads and allow users to add comments or updates to each lead. A dedicated dashboard is available for the users. Apart from this reports and sales details can also be viewed.
 
 ## Technology Stack
 
 * Styling using Bootstrap
 * React Router for routes
-* React Context to manage state globally.
+* React Context to manage state globally
 * React with chart.js
-* Axios: For making API requests.
+* Axios: For making API requests
 * Express & Node for API Repo Link
+* React-Toastify to add notifications to app
 * MongoDB using mongoose for data storage
 
 
